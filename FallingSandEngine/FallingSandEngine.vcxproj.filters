@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="FallingSandEngine">
+      <UniqueIdentifier>{7EEC9810-EA02-97A6-337A-22C89FCF672E}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\FallingSandEngine.h" />
+    <ClInclude Include="src\FallingSandEngine\Application.h">
+      <Filter>FallingSandEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Core.h">
+      <Filter>FallingSandEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\EntryPoint.h">
+      <Filter>FallingSandEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Log.h">
+      <Filter>FallingSandEngine</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\FallingSandEngine\Application.cpp">
+      <Filter>FallingSandEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Log.cpp">
+      <Filter>FallingSandEngine</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>

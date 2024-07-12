@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FallingSandGame", "FallingSandGame\FallingSandGame.vcxproj", "{624963EE-CED4-D0B2-D7E5-53A743F02CB3}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FallingSandEngine", "FallingSandEngine\FallingSandEngine.vcxproj", "{7EEC9810-EA02-97A6-337A-22C89FCF672E}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Game", "Game\Game.vcxproj", "{7FA9857C-6BE0-860D-14CD-6C1000E3020F}"
 EndProject
@@ -12,12 +12,12 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{624963EE-CED4-D0B2-D7E5-53A743F02CB3}.Debug|x64.ActiveCfg = Debug|x64
-		{624963EE-CED4-D0B2-D7E5-53A743F02CB3}.Debug|x64.Build.0 = Debug|x64
-		{624963EE-CED4-D0B2-D7E5-53A743F02CB3}.Dist|x64.ActiveCfg = Dist|x64
-		{624963EE-CED4-D0B2-D7E5-53A743F02CB3}.Dist|x64.Build.0 = Dist|x64
-		{624963EE-CED4-D0B2-D7E5-53A743F02CB3}.Release|x64.ActiveCfg = Release|x64
-		{624963EE-CED4-D0B2-D7E5-53A743F02CB3}.Release|x64.Build.0 = Release|x64
+		{7EEC9810-EA02-97A6-337A-22C89FCF672E}.Debug|x64.ActiveCfg = Debug|x64
+		{7EEC9810-EA02-97A6-337A-22C89FCF672E}.Debug|x64.Build.0 = Debug|x64
+		{7EEC9810-EA02-97A6-337A-22C89FCF672E}.Dist|x64.ActiveCfg = Dist|x64
+		{7EEC9810-EA02-97A6-337A-22C89FCF672E}.Dist|x64.Build.0 = Dist|x64
+		{7EEC9810-EA02-97A6-337A-22C89FCF672E}.Release|x64.ActiveCfg = Release|x64
+		{7EEC9810-EA02-97A6-337A-22C89FCF672E}.Release|x64.Build.0 = Release|x64
 		{7FA9857C-6BE0-860D-14CD-6C1000E3020F}.Debug|x64.ActiveCfg = Debug|x64
 		{7FA9857C-6BE0-860D-14CD-6C1000E3020F}.Debug|x64.Build.0 = Debug|x64
 		{7FA9857C-6BE0-860D-14CD-6C1000E3020F}.Dist|x64.ActiveCfg = Dist|x64

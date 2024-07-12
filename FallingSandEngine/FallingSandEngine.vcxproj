@@ -15,10 +15,10 @@
     </ProjectConfiguration>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{624963EE-CED4-D0B2-D7E5-53A743F02CB3}</ProjectGuid>
+    <ProjectGuid>{7EEC9810-EA02-97A6-337A-22C89FCF672E}</ProjectGuid>
     <IgnoreWarnCompileDuplicatedFilename>true</IgnoreWarnCompileDuplicatedFilename>
     <Keyword>Win32Proj</Keyword>
-    <RootNamespace>FallingSandGame</RootNamespace>
+    <RootNamespace>FallingSandEngine</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -55,30 +55,30 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
-    <OutDir>..\bin\Debug-windows-x86_64\FallingSandGame\</OutDir>
-    <IntDir>..\bin-int\Debug-windows-x86_64\FallingSandGame\</IntDir>
-    <TargetName>FallingSandGame</TargetName>
+    <OutDir>..\bin\Debug-windows-x86_64\FallingSandEngine\</OutDir>
+    <IntDir>..\bin-int\Debug-windows-x86_64\FallingSandEngine\</IntDir>
+    <TargetName>FallingSandEngine</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Release-windows-x86_64\FallingSandGame\</OutDir>
-    <IntDir>..\bin-int\Release-windows-x86_64\FallingSandGame\</IntDir>
-    <TargetName>FallingSandGame</TargetName>
+    <OutDir>..\bin\Release-windows-x86_64\FallingSandEngine\</OutDir>
+    <IntDir>..\bin-int\Release-windows-x86_64\FallingSandEngine\</IntDir>
+    <TargetName>FallingSandEngine</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <LinkIncremental>false</LinkIncremental>
-    <OutDir>..\bin\Dist-windows-x86_64\FallingSandGame\</OutDir>
-    <IntDir>..\bin-int\Dist-windows-x86_64\FallingSandGame\</IntDir>
-    <TargetName>FallingSandGame</TargetName>
+    <OutDir>..\bin\Dist-windows-x86_64\FallingSandEngine\</OutDir>
+    <IntDir>..\bin-int\Dist-windows-x86_64\FallingSandEngine\</IntDir>
+    <TargetName>FallingSandEngine</TargetName>
     <TargetExt>.dll</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>FSG_PLATFORM_WINDOWS;FSG_BUILD_DLL;FSG_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FSE_PLATFORM_WINDOWS;FSE_BUILD_DLL;FSE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
@@ -89,17 +89,17 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\FallingSandGame\FallingSandGame.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Debug-windows-x86_64\FallingSandEngine\FallingSandEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Game\$(ProjectName).dll"</Command>
+      <Command>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Game\$(ProjectName).dll</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>FSG_PLATFORM_WINDOWS;FSG_BUILD_DLL;FSG_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FSE_PLATFORM_WINDOWS;FSE_BUILD_DLL;FSE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -114,17 +114,17 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>..\bin\Release-windows-x86_64\FallingSandGame\FallingSandGame.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Release-windows-x86_64\FallingSandEngine\FallingSandEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Game\$(ProjectName).dll"</Command>
+      <Command>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Game\$(ProjectName).dll</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
-      <PreprocessorDefinitions>FSG_PLATFORM_WINDOWS;FSG_BUILD_DLL;FSG_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>FSE_PLATFORM_WINDOWS;FSE_BUILD_DLL;FSE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>vendor\spdlog\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -139,22 +139,22 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\FallingSandGame\FallingSandGame.lib</ImportLibrary>
+      <ImportLibrary>..\bin\Dist-windows-x86_64\FallingSandEngine\FallingSandEngine.lib</ImportLibrary>
     </Link>
     <PostBuildEvent>
-      <Command>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Game\$(ProjectName).dll"</Command>
+      <Command>copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Game\$(ProjectName).dll</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\FallingSandGame.h" />
-    <ClInclude Include="src\FallingSandGame\Application.h" />
-    <ClInclude Include="src\FallingSandGame\Core.h" />
-    <ClInclude Include="src\FallingSandGame\EntryPoint.h" />
-    <ClInclude Include="src\FallingSandGame\Log.h" />
+    <ClInclude Include="src\FallingSandEngine.h" />
+    <ClInclude Include="src\FallingSandEngine\Application.h" />
+    <ClInclude Include="src\FallingSandEngine\Core.h" />
+    <ClInclude Include="src\FallingSandEngine\EntryPoint.h" />
+    <ClInclude Include="src\FallingSandEngine\Log.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\FallingSandGame\Application.cpp" />
-    <ClCompile Include="src\FallingSandGame\Log.cpp" />
+    <ClCompile Include="src\FallingSandEngine\Application.cpp" />
+    <ClCompile Include="src\FallingSandEngine\Log.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

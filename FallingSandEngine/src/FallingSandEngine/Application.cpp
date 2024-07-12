@@ -1,6 +1,6 @@
 #include "Application.h"
 
-namespace FallingSandGame {
+namespace FallingSandEngine {
 	
 	void Application::Run()
 	{

@@ -1,6 +1,6 @@
-#include <FallingSandGame.h>
+#include <FallingSandEngine.h>
 
-class Game : public FallingSandGame::Application
+class Game : public FallingSandEngine::Application
 {
 public:
 	Game()
@@ -13,7 +13,7 @@ public:
 
 	}
 };
-FallingSandGame::Application* FallingSandGame::CreateApplication()
+FallingSandEngine::Application* FallingSandEngine::CreateApplication()
 {
 	return new Game();
 }

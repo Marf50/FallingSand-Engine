@@ -1,4 +1,4 @@
-workspace "FallingSandGame"
+workspace "FallingSandEngine"
 	architecture "x64"
 
 	configurations
@@ -9,8 +9,8 @@ workspace "FallingSandGame"
 	}
 
 	outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-project "FallingSandGame"
-	location "FallingSandGame"
+project "FallingSandEngine"
+	location "FallingSandEngine"
 	kind "SharedLib"
 	language "C++"
 	
@@ -34,8 +34,8 @@ project "FallingSandGame"
 
 		defines
 		{
-			"FSG_PLATFORM_WINDOWS",
-			"FSG_BUILD_DLL"	
+			"FSE_PLATFORM_WINDOWS",
+			"FSE_BUILD_DLL"	
 		}
 
 		postbuildcommands
@@ -44,15 +44,15 @@ project "FallingSandGame"
 		}
 
 		filter "configurations:Debug"
-			defines "FSG_DEBUG"
+			defines "FSE_DEBUG"
 			symbols "On"
 
 		filter "configurations:Release"
-			defines "FSG_RELEASE"
+			defines "FSE_RELEASE"
 			optimize "On"
 
 		filter "configurations:Dist"
-			defines "FSG_DIST"
+			defines "FSE_DIST"
 			optimize "On"
 
 	project "Game"
@@ -70,13 +70,13 @@ project "FallingSandGame"
 	}
 	includedirs
 	{
-		"FallingSandGame/vendor/spdlog/include",
-		"FallingSandGame/src"
+		"FallingSandEngine/vendor/spdlog/include",
+		"FallingSandEngine/src"
 	}
 
 	links
 	{
-		"FallingSandGame"
+		"FallingSandEngine"
 	}
 
 	filter "system:windows"
@@ -86,17 +86,17 @@ project "FallingSandGame"
 
 		defines
 		{
-			"FSG_PLATFORM_WINDOWS"	
+			"FSE_PLATFORM_WINDOWS"	
 		}
 
 		filter "configurations:Debug"
-			defines "FSG_DEBUG"
+			defines "FSE_DEBUG"
 			symbols "On"
 
 		filter "configurations:Release"
-			defines "FSG_RELEASE"
+			defines "FSE_RELEASE"
 			optimize "On"
 
 		filter "configurations:Dist"
-			defines "FSG_DIST"
+			defines "FSE_DIST"
 			optimize "On"

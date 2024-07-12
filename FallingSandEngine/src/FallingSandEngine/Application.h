@@ -1,8 +1,8 @@
 #pragma once
 #include "Core.h"
-namespace FallingSandGame {
+namespace FallingSandEngine {
 
-	class FSG_API Application
+	class FSE_API Application
 	{
 	public:
 		//Application();
