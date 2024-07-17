@@ -4,6 +4,18 @@
     <Filter Include="FallingSandEngine">
       <UniqueIdentifier>{7EEC9810-EA02-97A6-337A-22C89FCF672E}</UniqueIdentifier>
     </Filter>
+    <Filter Include="FallingSandEngine\Events">
+      <UniqueIdentifier>{A2DEB339-8E03-03BA-B74E-E849A3D201D8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="FallingSandEngine\ImGui">
+      <UniqueIdentifier>{2848CC28-947F-14C0-9D89-78E309403BB9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform">
+      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Platform\OpenGl">
+      <UniqueIdentifier>{3E7D2C1D-AA08-9AE1-B319-1DD61F24F6E1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\FallingSandEngine.h" />
@@ -16,16 +28,63 @@
     <ClInclude Include="src\FallingSandEngine\EntryPoint.h">
       <Filter>FallingSandEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Events\ApplicationEvents.h">
+      <Filter>FallingSandEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Events\Events.h">
+      <Filter>FallingSandEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Events\KeyEvents.h">
+      <Filter>FallingSandEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Events\MouseEvents.h">
+      <Filter>FallingSandEngine\Events</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\ImGui\ImGuiLayer.h">
+      <Filter>FallingSandEngine\ImGui</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Layer.h">
+      <Filter>FallingSandEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\LayerStack.h">
+      <Filter>FallingSandEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Log.h">
       <Filter>FallingSandEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Window.h">
+      <Filter>FallingSandEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\ImGuiOpenGlRenderer.h">
+      <Filter>Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\WindowsWindow.h">
+      <Filter>Platform</Filter>
+    </ClInclude>
+    <ClInclude Include="src\fsepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FallingSandEngine\Application.cpp">
       <Filter>FallingSandEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\ImGui\ImGuiLayer.cpp">
+      <Filter>FallingSandEngine\ImGui</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Layer.cpp">
+      <Filter>FallingSandEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\LayerStack.cpp">
+      <Filter>FallingSandEngine</Filter>
+    </ClCompile>
     <ClCompile Include="src\FallingSandEngine\Log.cpp">
       <Filter>FallingSandEngine</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\ImGuiOpenGlRenderer.cpp">
+      <Filter>Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\WindowsWindow.cpp">
+      <Filter>Platform</Filter>
+    </ClCompile>
+    <ClCompile Include="src\fsepch.cpp" />
   </ItemGroup>
 </Project>
