@@ -13,8 +13,8 @@
     <Filter Include="Platform">
       <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\OpenGl">
-      <UniqueIdentifier>{3E7D2C1D-AA08-9AE1-B319-1DD61F24F6E1}</UniqueIdentifier>
+    <Filter Include="Platform\Windows">
+      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -43,6 +43,12 @@
     <ClInclude Include="src\FallingSandEngine\ImGui\ImGuiLayer.h">
       <Filter>FallingSandEngine\ImGui</Filter>
     </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Input.h">
+      <Filter>FallingSandEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\KeyCodes.h">
+      <Filter>FallingSandEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Layer.h">
       <Filter>FallingSandEngine</Filter>
     </ClInclude>
@@ -52,20 +58,26 @@
     <ClInclude Include="src\FallingSandEngine\Log.h">
       <Filter>FallingSandEngine</Filter>
     </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\MouseButtonCodes.h">
+      <Filter>FallingSandEngine</Filter>
+    </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Window.h">
       <Filter>FallingSandEngine</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\OpenGl\ImGuiOpenGlRenderer.h">
-      <Filter>Platform\OpenGl</Filter>
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\WindowsWindow.h">
-      <Filter>Platform</Filter>
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
+      <Filter>Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\fsepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FallingSandEngine\Application.cpp">
       <Filter>FallingSandEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\ImGui\ImGuiBuild.cpp">
+      <Filter>FallingSandEngine\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\FallingSandEngine\ImGui\ImGuiLayer.cpp">
       <Filter>FallingSandEngine\ImGui</Filter>
@@ -79,11 +91,11 @@
     <ClCompile Include="src\FallingSandEngine\Log.cpp">
       <Filter>FallingSandEngine</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\OpenGl\ImGuiOpenGlRenderer.cpp">
-      <Filter>Platform\OpenGl</Filter>
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\Platform\WindowsWindow.cpp">
-      <Filter>Platform</Filter>
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
+      <Filter>Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\fsepch.cpp" />
   </ItemGroup>

@@ -80,11 +80,10 @@
       <PrecompiledHeaderFile>fsepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>FSE_PLATFORM_WINDOWS;FSE_BUILD_DLL;GLFW_INCLUDE_NONE;FSE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;Vendor\GLFW\include;Vendor\Glad\include;Vendor\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;Vendor\GLFW\include;Vendor\Glad\include;Vendor\ImGui;Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
-      <AdditionalOptions>/MDd %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -104,14 +103,13 @@
       <PrecompiledHeaderFile>fsepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>FSE_PLATFORM_WINDOWS;FSE_BUILD_DLL;GLFW_INCLUDE_NONE;FSE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;Vendor\GLFW\include;Vendor\Glad\include;Vendor\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;Vendor\GLFW\include;Vendor\Glad\include;Vendor\ImGui;Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -132,14 +130,13 @@
       <PrecompiledHeaderFile>fsepch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>FSE_PLATFORM_WINDOWS;FSE_BUILD_DLL;GLFW_INCLUDE_NONE;FSE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;Vendor\GLFW\include;Vendor\Glad\include;Vendor\ImGui;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;Vendor\GLFW\include;Vendor\Glad\include;Vendor\ImGui;Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
-      <AdditionalOptions>/MD %(AdditionalOptions)</AdditionalOptions>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -164,22 +161,26 @@
     <ClInclude Include="src\FallingSandEngine\Events\KeyEvents.h" />
     <ClInclude Include="src\FallingSandEngine\Events\MouseEvents.h" />
     <ClInclude Include="src\FallingSandEngine\ImGui\ImGuiLayer.h" />
+    <ClInclude Include="src\FallingSandEngine\Input.h" />
+    <ClInclude Include="src\FallingSandEngine\KeyCodes.h" />
     <ClInclude Include="src\FallingSandEngine\Layer.h" />
     <ClInclude Include="src\FallingSandEngine\LayerStack.h" />
     <ClInclude Include="src\FallingSandEngine\Log.h" />
+    <ClInclude Include="src\FallingSandEngine\MouseButtonCodes.h" />
     <ClInclude Include="src\FallingSandEngine\Window.h" />
-    <ClInclude Include="src\Platform\OpenGl\ImGuiOpenGlRenderer.h" />
-    <ClInclude Include="src\Platform\WindowsWindow.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsInput.h" />
+    <ClInclude Include="src\Platform\Windows\WindowsWindow.h" />
     <ClInclude Include="src\fsepch.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\FallingSandEngine\Application.cpp" />
+    <ClCompile Include="src\FallingSandEngine\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\FallingSandEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\FallingSandEngine\Layer.cpp" />
     <ClCompile Include="src\FallingSandEngine\LayerStack.cpp" />
     <ClCompile Include="src\FallingSandEngine\Log.cpp" />
-    <ClCompile Include="src\Platform\OpenGl\ImGuiOpenGlRenderer.cpp" />
-    <ClCompile Include="src\Platform\WindowsWindow.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\fsepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>

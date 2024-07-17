@@ -8,6 +8,8 @@ workspace "FallingSandEngine"
 		"Dist"
 	}
 
+	startproject "Game"
+
 	outputdir = "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
 	commands = [[copy /Y "$(TargetDir)$(ProjectName).dll" "$(SolutionDir)Game\$(ProjectName).dll"]]
 
@@ -16,15 +18,21 @@ workspace "FallingSandEngine"
 	IncludeDir["GLFW"] = "FallingSandEngine/Vendor/GLFW/include"
 	IncludeDir["Glad"] = "FallingSandEngine/Vendor/Glad/include"
 	IncludeDir["ImGui"] = "FallingSandEngine/Vendor/ImGui"
+	IncludeDir["glm"] = "FallingSandEngine/Vendor/glm"
+
+	group "Dependencies"
+		include "FallingSandEngine/Vendor/GLFW"
+		include "FallingSandEngine/Vendor/Glad"
+		include "FallingSandEngine/Vendor/imgui"
+		
+	group ""
 	
-	include "FallingSandEngine/Vendor/GLFW"
-	include "FallingSandEngine/Vendor/Glad"
-	include "FallingSandEngine/Vendor/imgui"
 
 project "FallingSandEngine"
 	location "FallingSandEngine"
 	kind "SharedLib"
 	language "C++"
+	staticruntime "Off"
 
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -44,7 +52,8 @@ project "FallingSandEngine"
 		"%{prj.name}/vendor/spdlog/include",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.Glad}",
-		"%{IncludeDir.ImGui}"
+		"%{IncludeDir.ImGui}",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -60,7 +69,6 @@ project "FallingSandEngine"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -77,26 +85,24 @@ project "FallingSandEngine"
 
 		filter "configurations:Debug"
 			defines "FSE_DEBUG"
-			buildoptions "/MDd"
+			runtime "Debug"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "FSE_RELEASE"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "FSE_DIST"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
-
-
 
 project "Game"
 	location "Game"
 	kind "ConsoleApp"
 	language"C++"
-	staticruntime "on"
+	staticruntime "Off"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -109,7 +115,9 @@ project "Game"
 	includedirs
 	{
 		"FallingSandEngine/vendor/spdlog/include",
-		"FallingSandEngine/src"
+		"FallingSandEngine/src",
+		"FallingSandEngine/Vendor",
+		"%{IncludeDir.glm}"
 	}
 
 	links
@@ -119,7 +127,6 @@ project "Game"
 
 	filter "system:windows"
 		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -129,15 +136,15 @@ project "Game"
 
 		filter "configurations:Debug"
 			defines "FSE_DEBUG"
-			buildoptions "/MDd"
+			runtime "Debug"
 			symbols "On"
 
 		filter "configurations:Release"
 			defines "FSE_RELEASE"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"
 
 		filter "configurations:Dist"
 			defines "FSE_DIST"
-			buildoptions "/MD"
+			runtime "Release"
 			optimize "On"

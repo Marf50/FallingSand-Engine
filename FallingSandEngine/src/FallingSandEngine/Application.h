@@ -6,6 +6,7 @@
 #include "FallingSandEngine/Events/Events.h"
 #include "FallingSandEngine/Events/ApplicationEvents.h"
 
+#include "FallingSandEngine/ImGui/ImGuiLayer.h"
 
 namespace FallingSandEngine {
 
@@ -29,6 +30,7 @@ namespace FallingSandEngine {
 		bool OnWindowClose(WindowCloseEvent& e);
 
 		std::unique_ptr<Window> m_Window;
+		ImGuiLayer* m_ImGuiLayer;
 		bool m_Running = true;
 		LayerStack m_LayerStack;
 

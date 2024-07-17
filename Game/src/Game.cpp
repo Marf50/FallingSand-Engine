@@ -1,5 +1,5 @@
 #include <FallingSandEngine.h>
-
+#include "imgui/imgui.h"
 //uses layer as a subclass and overrides the virtual funtions
 //class ExampleLayer : public FallingSandEngine::Layer
 //{
@@ -25,7 +25,7 @@ class Game : public FallingSandEngine::Application
 public:
 	Game()
 	{
-		PushOverlay(new FallingSandEngine::ImGuiLayer());
+		
 	}
 
 	~Game()

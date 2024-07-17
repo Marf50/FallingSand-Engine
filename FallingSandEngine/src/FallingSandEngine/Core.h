@@ -10,6 +10,14 @@
 	#error Falling Sand Game only Supports Windows!
 #endif
 
+
+
+#ifdef FSE_DEBUG
+	#define FSE_ENABLE_ASSERTS
+#endif
+
+
+
 #ifdef FSE_ENABLE_ASSERTS
 	#define FSE_ASSERT(x, ...) {if(!(x)) {FSE_ERROR("Assertion Failed: {0}" __VA_ARGS__); __debugbreak();}}
 	#define FSE_CORE_ASSERT(x, ...) {if(!(x)) {FSE_ERROR("Assertion Failed: {0}" __VA_ARGS__); __debugbreak();}}

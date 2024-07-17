@@ -1,8 +1,9 @@
 #include "fsepch.h"
 #include "Application.h"
 
-
+#include "Input.h"
 #include "FallingSandEngine/Log.h"
+#include "glad/glad.h"
 
 namespace FallingSandEngine {
 
@@ -16,6 +17,9 @@ namespace FallingSandEngine {
 		s_Instance = this;
 		m_Window = std::unique_ptr<Window>(Window::Create());
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
+
+		m_ImGuiLayer = new ImGuiLayer();
+		PushOverlay(m_ImGuiLayer);
 	}
 	Application::~Application()
 	{
@@ -52,10 +56,19 @@ namespace FallingSandEngine {
 	{
 		while(m_Running)
 		{
+			glClearColor(0, 0, 0, 1);
+			glClear(GL_COLOR_BUFFER_BIT);
 			for (Layer* layer : m_LayerStack)
 				layer->OnUpdate();
+			//will go to render thread, todo
+			m_ImGuiLayer->Begin();
+			for (Layer* layer : m_LayerStack)
+				layer->OnImGuiRender();
+			m_ImGuiLayer->End();
 
 			m_Window->OnUpdate();
+
+
 		}
 	}
 	//if user presses close on window stop running
