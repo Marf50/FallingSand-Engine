@@ -134,6 +134,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\EditorLayer.h" />
+  </ItemGroup>
+  <ItemGroup>
     <ClCompile Include="src\EditorLayer.cpp" />
     <ClCompile Include="src\TheSandboxApp.cpp" />
   </ItemGroup>
@@ -141,9 +144,6 @@
     <ProjectReference Include="..\FallingSandEngine\FallingSandEngine.vcxproj">
       <Project>{7EEC9810-EA02-97A6-337A-22C89FCF672E}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="src\EditorLayer.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
