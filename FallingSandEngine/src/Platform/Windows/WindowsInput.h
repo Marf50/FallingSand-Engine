@@ -1,5 +1,5 @@
 #pragma once
-#include "FallingSandEngine/Input.h"
+#include "FallingSandEngine/Core/Input.h"
 
 namespace FallingSandEngine
 {

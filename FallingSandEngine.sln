@@ -13,6 +13,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ImGui", "FallingSandEngine\
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "FallingSandEngine", "FallingSandEngine\FallingSandEngine.vcxproj", "{7EEC9810-EA02-97A6-337A-22C89FCF672E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TheSandBox", "TheSandBox\TheSandBox.vcxproj", "{B5FF10F1-A1B7-523E-0ABF-2B9AF695ED2E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -50,6 +52,12 @@ Global
 		{7EEC9810-EA02-97A6-337A-22C89FCF672E}.Dist|x64.Build.0 = Dist|x64
 		{7EEC9810-EA02-97A6-337A-22C89FCF672E}.Release|x64.ActiveCfg = Release|x64
 		{7EEC9810-EA02-97A6-337A-22C89FCF672E}.Release|x64.Build.0 = Release|x64
+		{B5FF10F1-A1B7-523E-0ABF-2B9AF695ED2E}.Debug|x64.ActiveCfg = Debug|x64
+		{B5FF10F1-A1B7-523E-0ABF-2B9AF695ED2E}.Debug|x64.Build.0 = Debug|x64
+		{B5FF10F1-A1B7-523E-0ABF-2B9AF695ED2E}.Dist|x64.ActiveCfg = Dist|x64
+		{B5FF10F1-A1B7-523E-0ABF-2B9AF695ED2E}.Dist|x64.Build.0 = Dist|x64
+		{B5FF10F1-A1B7-523E-0ABF-2B9AF695ED2E}.Release|x64.ActiveCfg = Release|x64
+		{B5FF10F1-A1B7-523E-0ABF-2B9AF695ED2E}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

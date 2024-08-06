@@ -1,9 +1,9 @@
 #include "fsepch.h"
 #include "ImGuiLayer.h"
-#include "FallingSandEngine/Application.h"
+#include "FallingSandEngine/Core/Application.h"
 #include "imgui.h"
-
-#define IMGUI_IMPL_API
+//already defined in imgui.h
+//#define IMGUI_IMPL_API
 #include "backends/imgui_impl_glfw.h"
 #include "backends/imgui_impl_opengl3.h"
 
@@ -24,6 +24,7 @@ namespace FallingSandEngine
 	
 	void ImGuiLayer::OnAttach()
 	{
+		FSE_PROFILE_FUNCTION();
 		//set context
 		IMGUI_CHECKVERSION();
 		ImGui::CreateContext();
@@ -56,6 +57,7 @@ namespace FallingSandEngine
 
 	void ImGuiLayer::OnDetach()
 	{
+		FSE_PROFILE_FUNCTION();
 		ImGui_ImplOpenGL3_Shutdown();
 		ImGui_ImplGlfw_Shutdown();
 		ImGui::DestroyContext();
@@ -63,6 +65,7 @@ namespace FallingSandEngine
 
 	void ImGuiLayer::Begin()
 	{
+		FSE_PROFILE_FUNCTION();
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
@@ -70,9 +73,10 @@ namespace FallingSandEngine
 
 	void ImGuiLayer::End()
 	{
+		FSE_PROFILE_FUNCTION();
 		ImGuiIO& io = ImGui::GetIO();
 		Application& app = Application::Get();
-		io.DisplaySize = ImVec2(app.GetWindow().GetWidth(), app.GetWindow().GetHeight());
+		io.DisplaySize = ImVec2((float)app.GetWindow().GetWidth(), (float)app.GetWindow().GetHeight());
 		//render pog
 		ImGui::Render();
 		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
@@ -87,8 +91,7 @@ namespace FallingSandEngine
 
 	void ImGuiLayer::OnImGuiRender()
 	{
-		static bool show = true;
-		ImGui::ShowDemoWindow(&show);
+		
 	}
 
 }

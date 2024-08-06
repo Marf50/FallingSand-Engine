@@ -7,10 +7,12 @@
 #include <algorithm>
 #include <functional>
 
-#include "FallingSandEngine/Log.h"
+#include "FallingSandEngine/Core/Log.h"
+#include "FallingSandEngine/Debug/Instrumentor.h"
 
 #include <sstream>
 #include <string>
+#include <array>
 #include <vector>
 #include <unordered_map>
 #include <unordered_set>

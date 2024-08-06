@@ -1,8 +1,9 @@
 #pragma once
-#include "FallingSandEngine/Window.h"
+#include "FallingSandEngine/Core/Window.h"
 
 #include <GLFW/glfw3.h>
 
+#include "FallingSandEngine/Renderer/GraphicsContext.h"
 
 namespace FallingSandEngine
 {
@@ -29,6 +30,7 @@ namespace FallingSandEngine
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		GraphicsContext* m_Context;
 		//stored for glfw
 		struct WindowData
 		{

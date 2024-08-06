@@ -1,6 +1,6 @@
 #include "fsepch.h"
 #include "WindowsInput.h"
-#include "FallingSandEngine/Application.h"
+#include "FallingSandEngine/Core/Application.h"
 #include <GLFW/glfw3.h>
 
 namespace FallingSandEngine

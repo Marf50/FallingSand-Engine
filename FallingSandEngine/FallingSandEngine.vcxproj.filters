@@ -1,102 +1,258 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="FallingSandEngine">
-      <UniqueIdentifier>{7EEC9810-EA02-97A6-337A-22C89FCF672E}</UniqueIdentifier>
+    <Filter Include="Vendor">
+      <UniqueIdentifier>{935FDCD7-7F01-07AE-68BC-1A0254FD8DFE}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FallingSandEngine\Events">
-      <UniqueIdentifier>{A2DEB339-8E03-03BA-B74E-E849A3D201D8}</UniqueIdentifier>
+    <Filter Include="Vendor\stb_image">
+      <UniqueIdentifier>{EDE315D3-D9DC-3425-020F-1AAAEE661431}</UniqueIdentifier>
     </Filter>
-    <Filter Include="FallingSandEngine\ImGui">
-      <UniqueIdentifier>{2848CC28-947F-14C0-9D89-78E309403BB9}</UniqueIdentifier>
+    <Filter Include="src">
+      <UniqueIdentifier>{2DAB880B-99B4-887C-2230-9F7C8E38947C}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform">
-      <UniqueIdentifier>{2AC788B4-1694-E3BF-3FAD-D1672BD9184E}</UniqueIdentifier>
+    <Filter Include="src\FallingSandEngine">
+      <UniqueIdentifier>{5535A765-C1A1-6260-8A95-FABDF6C084C8}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Platform\Windows">
-      <UniqueIdentifier>{64FBD71A-50F4-F66C-7926-DCF1657ED678}</UniqueIdentifier>
+    <Filter Include="src\FallingSandEngine\Core">
+      <UniqueIdentifier>{CDF62F71-B906-DC41-22C0-40600EEFCADA}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FallingSandEngine\Debug">
+      <UniqueIdentifier>{8B2B3B97-F738-697D-801F-6568EC2B3534}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FallingSandEngine\Events">
+      <UniqueIdentifier>{99EF2A82-85AA-1A2E-2E62-93781AFC64BE}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FallingSandEngine\ImGui">
+      <UniqueIdentifier>{3F969997-ABA3-C77D-348A-C368A0969334}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\FallingSandEngine\Renderer">
+      <UniqueIdentifier>{9B48A0AF-876E-6A16-70B4-EFE15C798FE2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform">
+      <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\OpenGl">
+      <UniqueIdentifier>{55A49437-C105-7245-4A73-B8F7B6D3A804}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\Platform\Windows">
+      <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\FallingSandEngine.h" />
-    <ClInclude Include="src\FallingSandEngine\Application.h">
-      <Filter>FallingSandEngine</Filter>
+    <ClInclude Include="Vendor\stb_image\stb_image.h">
+      <Filter>Vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\FallingSandEngine\Core.h">
-      <Filter>FallingSandEngine</Filter>
+    <ClInclude Include="src\FallingSandEngine.h">
+      <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\FallingSandEngine\EntryPoint.h">
-      <Filter>FallingSandEngine</Filter>
+    <ClInclude Include="src\FallingSandEngine\Core\Application.h">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Core\Core.h">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Core\EntryPoint.h">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Core\Input.h">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Core\KeyCodes.h">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Core\Layer.h">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Core\LayerStack.h">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Core\Log.h">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Core\MouseButtonCodes.h">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Core\Timestep.h">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Core\Window.h">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Debug\Instrumentor.h">
+      <Filter>src\FallingSandEngine\Debug</Filter>
     </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Events\ApplicationEvents.h">
-      <Filter>FallingSandEngine\Events</Filter>
+      <Filter>src\FallingSandEngine\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Events\Events.h">
-      <Filter>FallingSandEngine\Events</Filter>
+      <Filter>src\FallingSandEngine\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Events\KeyEvents.h">
-      <Filter>FallingSandEngine\Events</Filter>
+      <Filter>src\FallingSandEngine\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Events\MouseEvents.h">
-      <Filter>FallingSandEngine\Events</Filter>
+      <Filter>src\FallingSandEngine\Events</Filter>
     </ClInclude>
     <ClInclude Include="src\FallingSandEngine\ImGui\ImGuiLayer.h">
-      <Filter>FallingSandEngine\ImGui</Filter>
+      <Filter>src\FallingSandEngine\ImGui</Filter>
     </ClInclude>
-    <ClInclude Include="src\FallingSandEngine\Input.h">
-      <Filter>FallingSandEngine</Filter>
+    <ClInclude Include="src\FallingSandEngine\Renderer\Buffer.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\FallingSandEngine\KeyCodes.h">
-      <Filter>FallingSandEngine</Filter>
+    <ClInclude Include="src\FallingSandEngine\Renderer\FrameBuffer.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\FallingSandEngine\Layer.h">
-      <Filter>FallingSandEngine</Filter>
+    <ClInclude Include="src\FallingSandEngine\Renderer\GraphicsContext.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\FallingSandEngine\LayerStack.h">
-      <Filter>FallingSandEngine</Filter>
+    <ClInclude Include="src\FallingSandEngine\Renderer\OrthographicCamera.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\FallingSandEngine\Log.h">
-      <Filter>FallingSandEngine</Filter>
+    <ClInclude Include="src\FallingSandEngine\Renderer\OrthographicCameraController.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\FallingSandEngine\MouseButtonCodes.h">
-      <Filter>FallingSandEngine</Filter>
+    <ClInclude Include="src\FallingSandEngine\Renderer\RenderCommand.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
-    <ClInclude Include="src\FallingSandEngine\Window.h">
-      <Filter>FallingSandEngine</Filter>
+    <ClInclude Include="src\FallingSandEngine\Renderer\Renderer.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Renderer\Renderer2D.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Renderer\RendererAPI.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Renderer\Shader.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Renderer\SubTexture2D.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Renderer\Texture.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Renderer\VertexArray.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLBuffer.h">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLContext.h">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLFrameBuffer.h">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLRendererAPI.h">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLShader.h">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLTexture.h">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGl\OpenGLVertexArray.h">
+      <Filter>src\Platform\OpenGl</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClInclude>
-    <ClInclude Include="src\fsepch.h" />
+    <ClInclude Include="src\fsepch.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\FallingSandEngine\Application.cpp">
-      <Filter>FallingSandEngine</Filter>
+    <ClCompile Include="Vendor\stb_image\stb_image.cpp">
+      <Filter>Vendor\stb_image</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Core\Application.cpp">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Core\Layer.cpp">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Core\LayerStack.cpp">
+      <Filter>src\FallingSandEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Core\Log.cpp">
+      <Filter>src\FallingSandEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\FallingSandEngine\ImGui\ImGuiBuild.cpp">
-      <Filter>FallingSandEngine\ImGui</Filter>
+      <Filter>src\FallingSandEngine\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\FallingSandEngine\ImGui\ImGuiLayer.cpp">
-      <Filter>FallingSandEngine\ImGui</Filter>
+      <Filter>src\FallingSandEngine\ImGui</Filter>
     </ClCompile>
-    <ClCompile Include="src\FallingSandEngine\Layer.cpp">
-      <Filter>FallingSandEngine</Filter>
+    <ClCompile Include="src\FallingSandEngine\Renderer\Buffer.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\FallingSandEngine\LayerStack.cpp">
-      <Filter>FallingSandEngine</Filter>
+    <ClCompile Include="src\FallingSandEngine\Renderer\FrameBuffer.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClCompile>
-    <ClCompile Include="src\FallingSandEngine\Log.cpp">
-      <Filter>FallingSandEngine</Filter>
+    <ClCompile Include="src\FallingSandEngine\Renderer\OrthographicCamera.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Renderer\OrthographicCameraController.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Renderer\RenderCommand.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Renderer\Renderer.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Renderer\Renderer2D.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Renderer\RendererAPI.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Renderer\Shader.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Renderer\SubTexture2D.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Renderer\Texture.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Renderer\VertexArray.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLBuffer.cpp">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLFrameBuffer.cpp">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLRendererAPI.cpp">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLShader.cpp">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLTexture.cpp">
+      <Filter>src\Platform\OpenGl</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGl\OpenGLVertexArray.cpp">
+      <Filter>src\Platform\OpenGl</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
-      <Filter>Platform\Windows</Filter>
+      <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\fsepch.cpp" />
+    <ClCompile Include="src\fsepch.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

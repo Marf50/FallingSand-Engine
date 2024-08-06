@@ -3,8 +3,8 @@
 #include "FallingSandEngine/Events/ApplicationEvents.h"
 #include "FallingSandEngine/Events/KeyEvents.h"
 #include "FallingSandEngine/Events/MouseEvents.h"
+#include "Platform/OpenGl/OpenGLContext.h"
 
-#include <glad/glad.h>
 
 
 namespace FallingSandEngine
@@ -23,19 +23,24 @@ namespace FallingSandEngine
 
 	WindowsWindow::WindowsWindow(const WindowProps& props)
 	{
+		FSE_PROFILE_FUNCTION();
 		Init(props);
 	}
 
 	WindowsWindow::~WindowsWindow()
 	{
+		FSE_PROFILE_FUNCTION();
 		Shutdown();
 	}
 
 	void WindowsWindow::Init(const WindowProps& props)
 	{
+		FSE_PROFILE_FUNCTION();
 		m_Data.Title = props.Title;
 		m_Data.Width = props.Width;
 		m_Data.Height = props.Height;
+
+		
 
 		FSE_CORE_INFO("Creating Window {0} ({1}, {2})", props.Title, props.Width, props.Height);
 		//inits glfw
@@ -49,9 +54,10 @@ namespace FallingSandEngine
 		}
 		//create window and makes pointer
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		FSE_CORE_ASSERT(status, "Failed to initailize Glad!");
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+		
+		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -152,17 +158,21 @@ namespace FallingSandEngine
 
 	void WindowsWindow::Shutdown()
 	{
+		FSE_PROFILE_FUNCTION();
 		glfwDestroyWindow(m_Window);
 	}
 
 	void WindowsWindow::OnUpdate()
 	{
+		FSE_PROFILE_FUNCTION();
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
+		
 	}
 
 	void WindowsWindow::SetVSync(bool enabled)
 	{
+		FSE_PROFILE_FUNCTION();
 		if (enabled)
 			glfwSwapInterval(1);
 		else

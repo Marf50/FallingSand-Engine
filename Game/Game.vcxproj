@@ -82,7 +82,7 @@
       <AdditionalIncludeDirectories>..\FallingSandEngine\vendor\spdlog\include;..\FallingSandEngine\src;..\FallingSandEngine\Vendor;..\FallingSandEngine\Vendor\glm;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -102,7 +102,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -123,7 +123,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
@@ -134,7 +134,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="src\Game.cpp" />
+    <ClInclude Include="src\Sandbox2D.h" />
+    <ClInclude Include="src\TileTestGame.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Sandbox2D.cpp" />
+    <ClCompile Include="src\Testing Enviroment.cpp" />
+    <ClCompile Include="src\TileTestGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FallingSandEngine\FallingSandEngine.vcxproj">

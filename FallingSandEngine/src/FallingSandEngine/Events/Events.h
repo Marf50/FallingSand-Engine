@@ -1,6 +1,6 @@
 #pragma once
 
-#include "FallingSandEngine/Core.h"
+#include "FallingSandEngine/Core/Core.h"
 
 #include <string>
 #include <functional>
