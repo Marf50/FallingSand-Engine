@@ -4,3 +4,5 @@ bin/
 bin-int/
 #files
 *.user
+FallingSandEngine/Vendor/imgui
+FallingSandEngine/Vendor/spdlog/
