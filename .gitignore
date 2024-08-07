@@ -4,5 +4,9 @@ bin/
 bin-int/
 #files
 *.user
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> parent of fc63377 (Update .gitignore)
+FallingSandEngine/Vendor/imgui
