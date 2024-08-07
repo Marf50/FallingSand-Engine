@@ -7,9 +7,6 @@
 [submodule "FallingSandEngine/Vendor/GLFW"]
 	path = FallingSandEngine/Vendor/GLFW
 	url = https://github.com/TheCherno/glfw
-[submodule "FallingSandEngine/Vendor/imgui"]
-	path = FallingSandEngine/Vendor/imgui
-	url = https://github.com/ocornut/imgui
 [submodule "FallingSandEngine/Vendor/glm"]
 	path = FallingSandEngine/Vendor/glm
 	url = https://github.com/g-truc/glm
