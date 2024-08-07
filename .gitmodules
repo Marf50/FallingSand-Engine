@@ -13,3 +13,6 @@
 [submodule "FallingSandEngine/Vendor/spdlog"]
 	path = FallingSandEngine/Vendor/spdlog
 	url = https://github.com/gabime/spdlog
+[submodule "FallingSandEngine/Vendor/imgui"]
+	path = FallingSandEngine/Vendor/imgui
+	url = https://github.com/ocornut/imgui
