@@ -1,8 +1,9 @@
 #include "EditorLayer.h"
 
 #include <imgui/imgui.h>
+#include <glm/gtc/type_ptr.hpp>
 
-
+#include "FallingSandEngine/Scene/SceneSerailizer.h"
 
 namespace FallingSandEngine
 {
@@ -14,18 +15,25 @@ namespace FallingSandEngine
 	void EditorLayer::OnAttach()
 	{
 		// Load Stuff Here
-		//Framebuffer Setup
+		
+		// Framebuffer Setup
 		{
 			FramebufferSpecification FramebufferSpec;
 			FramebufferSpec.Width = 1280;
 			FramebufferSpec.Height = 720;
 			m_Framebuffer = Framebuffer::Create(FramebufferSpec);
 		}
-		//Texture Loading
+		// Texture Loading
 		{
 
 		}
+		// Scene
+		{
+			m_ActiveScene = CreateRef<Scene>();
+			m_ScenehierarchyPanel.SetContext(m_ActiveScene);
 
+			
+		}
 	}
 	void EditorLayer::OnDetach()
 	{
@@ -33,29 +41,37 @@ namespace FallingSandEngine
 	}
 	void EditorLayer::OnEvent(Event& e)
 	{
-		m_CameraController.OnEvent(e);
+		if (m_ViewPortHovered)
+		{
+			m_CameraController.OnEvent(e);
+		}
 	}
 	void EditorLayer::OnUpdate(Timestep ts)
 	{
-		// Update
+		
 
-		m_CameraController.OnUpdate(ts);
-
-		// Render
-		Renderer2D::ResetStats();
-		// Pre Render
-		m_Framebuffer->Bind();
-		RenderCommand::SetClearColor({ 0.1, 0.1, 0.1, 1 });
-		RenderCommand::Clear();
-
-
-		Renderer2D::BeginScene(m_CameraController.GetCamera());
+		// Update // 
 		{
-			Renderer2D::DrawQuad({ 0.0f,0.0f }, { 1.0f,1.0f }, { 1.0f,0.3f,0.2f,1.0f });
-
+			if (m_ViewPortFocused)
+			{
+				m_CameraController.OnUpdate(ts);
+			}
+			
 		}
-		Renderer2D::EndScene();
-		m_Framebuffer->UnBind();
+		// Render // 
+		{
+			Renderer2D::ResetStats();
+			// Pre Render
+			{
+				m_Framebuffer->Bind();
+				RenderCommand::SetClearColor({ 0.1, 0.1, 0.1, 1 });
+				RenderCommand::Clear();
+			}
+			
+			m_ActiveScene->OnUpdate(ts);
+			
+			m_Framebuffer->UnBind();
+		}
 	}
 	void EditorLayer::OnImGuiRender()
 	{
@@ -68,6 +84,17 @@ namespace FallingSandEngine
 		{
 			if (ImGui::BeginMenu("File"))
 			{
+				if (ImGui::MenuItem("Save"))
+				{
+					SceneSerializer serializer(m_ActiveScene);
+					serializer.Serialize("assets/Scenes/Example.FSEScene");
+				}
+				if (ImGui::MenuItem("Load"))
+				{
+					SceneSerializer serializer(m_ActiveScene);
+					serializer.Deserialize("assets/Scenes/Example.FSEScene");
+				}
+
 				if (ImGui::MenuItem("Exit"))
 					Application::Get().Close();
 				ImGui::EndMenu();
@@ -79,6 +106,9 @@ namespace FallingSandEngine
 		{
 			ImGui::PushStyleVar(ImGuiStyleVar_WindowPadding, ImVec2{ 0,0 });
 			ImGui::Begin("ViewPort");
+			m_ViewPortFocused = ImGui::IsWindowFocused();
+			m_ViewPortHovered = ImGui::IsWindowHovered();
+			Application::Get().GetImGuiLayer()->SetBlockEvents(!m_ViewPortFocused || !m_ViewPortHovered);
 			ImVec2 ViewPortSize = ImGui::GetContentRegionAvail();
 			if (m_ViewPortSize != *((glm::vec2*)&ViewPortSize))
 			{
@@ -86,6 +116,7 @@ namespace FallingSandEngine
 				m_ViewPortSize = { ViewPortSize.x,ViewPortSize.y };
 				
 				m_CameraController.ResizeBounds(ViewPortSize.x, ViewPortSize.y);
+				m_ActiveScene->ResizeBounds((uint32_t)ViewPortSize.x, (uint32_t)ViewPortSize.y);
 			}
 			
 			uint32_t textureID = m_Framebuffer->GetColorAttachmentRendererID();
@@ -93,5 +124,6 @@ namespace FallingSandEngine
 			ImGui::End();
 			ImGui::PopStyleVar();
 		}
+		m_ScenehierarchyPanel.OnImGuiRender();
 	}
 }

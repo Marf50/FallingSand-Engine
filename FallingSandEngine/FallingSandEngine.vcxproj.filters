@@ -28,6 +28,9 @@
     <Filter Include="src\FallingSandEngine\Renderer">
       <UniqueIdentifier>{9B48A0AF-876E-6A16-70B4-EFE15C798FE2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\FallingSandEngine\Scene">
+      <UniqueIdentifier>{328E4998-9E9B-777E-2782-7369938E4335}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
@@ -99,6 +102,9 @@
     <ClInclude Include="src\FallingSandEngine\Renderer\Buffer.h">
       <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Renderer\Camera.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Renderer\FrameBuffer.h">
       <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
@@ -135,6 +141,21 @@
     <ClInclude Include="src\FallingSandEngine\Renderer\VertexArray.h">
       <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Scene\Components.h">
+      <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Scene\Entity.h">
+      <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Scene\Scene.h">
+      <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Scene\SceneCamera.h">
+      <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Scene\ScriptableEntity.h">
+      <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGl\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGl</Filter>
     </ClInclude>
@@ -156,15 +177,13 @@
     <ClInclude Include="src\Platform\OpenGl\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGl</Filter>
     </ClInclude>
-    <ClInclude Include="src\Platform\Windows\WindowsInput.h">
-      <Filter>src\Platform\Windows</Filter>
-    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsWindow.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
     <ClInclude Include="src\fsepch.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Scene\SceneSerailizer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\stb_image\stb_image.cpp">
@@ -224,6 +243,15 @@
     <ClCompile Include="src\FallingSandEngine\Renderer\VertexArray.cpp">
       <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Scene\Entity.cpp">
+      <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Scene\Scene.cpp">
+      <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Scene\SceneCamera.cpp">
+      <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGl\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGl</Filter>
     </ClCompile>
@@ -254,5 +282,6 @@
     <ClCompile Include="src\fsepch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Scene\SceneSerializer.cpp" />
   </ItemGroup>
 </Project>

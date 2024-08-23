@@ -19,11 +19,14 @@ workspace "FallingSandEngine"
 	IncludeDir["ImGui"] = "FallingSandEngine/Vendor/ImGui"
 	IncludeDir["glm"] = "FallingSandEngine/Vendor/glm"
 	IncludeDir["stb_image"] = "FallingSandEngine/Vendor/stb_image"
+	IncludeDir["entt"] = "FallingSandEngine/Vendor/entt/include"
+	IncludeDir["yaml"] = "FallingSandEngine/Vendor/yaml/include"
 
 	group "Dependencies"
 		include "FallingSandEngine/Vendor/GLFW"
 		include "FallingSandEngine/Vendor/Glad"
 		include "FallingSandEngine/Vendor/imgui"
+		include "FallingSandEngine/Vendor/yaml"
 		
 	group ""
 	
@@ -60,7 +63,9 @@ project "FallingSandEngine"
 		"%{IncludeDir.Glad}",
 		"%{IncludeDir.ImGui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.yaml}"
 
 	}
 
@@ -70,7 +75,8 @@ project "FallingSandEngine"
 		"Glad",
 		"ImGui",
 		"opengl32.lib",
-		"dwmapi.lib"
+		"dwmapi.lib",
+		"yaml-cpp"
 	}
 	
 
@@ -121,7 +127,8 @@ project "TheSandBox"
 		"FallingSandEngine/vendor/spdlog/include",
 		"FallingSandEngine/src",
 		"FallingSandEngine/Vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links
@@ -173,7 +180,8 @@ project "Game"
 		"FallingSandEngine/vendor/spdlog/include",
 		"FallingSandEngine/src",
 		"FallingSandEngine/Vendor",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.entt}"
 	}
 
 	links

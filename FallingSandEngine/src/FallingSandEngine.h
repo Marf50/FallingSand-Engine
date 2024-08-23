@@ -7,6 +7,11 @@
 #include "FallingSandEngine/Core/Log.h"
 
 #include "FallingSandEngine/Core/Timestep.h"
+#include "FallingSandEngine/Core/KeyCodes.h"
+#include "FallingSandEngine/Scene/Scene.h"
+#include "FallingSandEngine/Scene/Components.h"
+#include "FallingSandEngine/Scene/Entity.h"
+#include "FallingSandEngine/Scene/ScriptableEntity.h"
 //Render work
 #include "FallingSandEngine/ImGui/ImGuiLayer.h"
 #include "FallingSandEngine/Renderer/Renderer.h"

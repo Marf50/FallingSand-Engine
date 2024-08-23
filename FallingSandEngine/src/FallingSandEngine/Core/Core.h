@@ -29,7 +29,7 @@
 #define FSE_ASSERT(x, ...)
 #define FSE_CORE_ASSERT(x, ...)
 #endif
-
+#define YAML_CPP_STATIC_DEFINE
 //shifts bit by x ammount
 #define BIT(x) (1 << x)
 

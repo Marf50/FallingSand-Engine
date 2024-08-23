@@ -14,6 +14,7 @@ namespace FallingSandEngine
 	class Framebuffer
 	{
 	public:
+		virtual ~Framebuffer() {};
 		virtual void Bind() = 0;
 		virtual void UnBind() = 0;
 

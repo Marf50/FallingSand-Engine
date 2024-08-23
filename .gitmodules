@@ -1,8 +1,8 @@
 [submodule "FallingSandGame/Vendor/spdlog"]
-	path = FallingSandGame/Vendor/spdlog
+	path = FallingSandEngine/Vendor/spdlog
 	url = https://github.com/gabime/spdlog
 [submodule "FallingSandGame/Vendor/GLFW"]
-	path = FallingSandGame/Vendor/GLFW
+	path = FallingSandEngine/Vendor/GLFW
 	url = https://github.com/TheCherno/glfw
 [submodule "FallingSandEngine/Vendor/imgui"]
 	path = FallingSandEngine/Vendor/imgui
@@ -10,3 +10,6 @@
 [submodule "FallingSandEngine/Vendor/glm"]
 	path = FallingSandEngine/Vendor/glm
 	url = https://github.com/g-truc/glm
+[submodule "FallingSandEngine/Vendor/yaml"]
+	path = FallingSandEngine/Vendor/yaml
+	url = https://github.com/thecherno/yaml-cpp
