@@ -21,5 +21,7 @@
 //platform headers
 
 #ifdef FSE_PLATFORM_WINDOWS
+//some wacky stuff with the file path dialog so i added this because i was having trouble with char* and wchar_t's
+	#undef UNICODE
 	#include <Windows.h>
 #endif

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Chunks">
+      <UniqueIdentifier>{D1A5C4AB-BD47-EF81-A602-03D6924376D2}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elements">
+      <UniqueIdentifier>{22088A96-0ED5-E4A1-37EE-D249231A1A30}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\Base.h" />
+    <ClInclude Include="src\Chunks\ChunkBehavior.h">
+      <Filter>Chunks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\Element.h">
+      <Filter>Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\ElementFactory.h">
+      <Filter>Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\ElementType.h">
+      <Filter>Elements</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Sandbox2D.h" />
+    <ClInclude Include="src\Elements\Liquids\Liquid.h" />
+    <ClInclude Include="src\Elements\Powders\Powder.h" />
+    <ClInclude Include="src\Elements\Solids\Solid.h" />
+    <ClInclude Include="src\Elements\Powders\Sand.h" />
+    <ClInclude Include="src\Elements\Powders\Dirt.h" />
+    <ClInclude Include="src\Elements\Liquids\Water.h" />
+    <ClInclude Include="src\Elements\Solids\Stone.h" />
+    <ClInclude Include="src\Elements\Gasses\Gases.h" />
+    <ClInclude Include="src\Elements\Gasses\Air.h" />
+    <ClInclude Include="src\Chunks\ChunkManager.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\Sandbox2D.cpp" />
+    <ClCompile Include="src\Testing Enviroment.cpp" />
+    <ClCompile Include="src\Chunks\ChunkManager.cpp" />
+  </ItemGroup>
+</Project>

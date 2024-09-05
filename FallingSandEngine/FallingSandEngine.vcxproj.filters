@@ -31,6 +31,9 @@
     <Filter Include="src\FallingSandEngine\Scene">
       <UniqueIdentifier>{328E4998-9E9B-777E-2782-7369938E4335}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\FallingSandEngine\Utils">
+      <UniqueIdentifier>{75227798-E12F-A57E-6A16-A169D6227135}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
@@ -153,8 +156,14 @@
     <ClInclude Include="src\FallingSandEngine\Scene\SceneCamera.h">
       <Filter>src\FallingSandEngine\Scene</Filter>
     </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Scene\SceneSerailizer.h">
+      <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Scene\ScriptableEntity.h">
       <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Utils\PlatformUtils.h">
+      <Filter>src\FallingSandEngine\Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGl\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGl</Filter>
@@ -183,7 +192,7 @@
     <ClInclude Include="src\fsepch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\FallingSandEngine\Scene\SceneSerailizer.h" />
+    <ClInclude Include="src\FallingSandEngine\Scene\ElementInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\stb_image\stb_image.cpp">
@@ -252,6 +261,9 @@
     <ClCompile Include="src\FallingSandEngine\Scene\SceneCamera.cpp">
       <Filter>src\FallingSandEngine\Scene</Filter>
     </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Scene\SceneSerializer.cpp">
+      <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGl\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGl</Filter>
     </ClCompile>
@@ -276,12 +288,14 @@
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\fsepch.cpp">
       <Filter>src</Filter>
     </ClCompile>
-    <ClCompile Include="src\FallingSandEngine\Scene\SceneSerializer.cpp" />
   </ItemGroup>
 </Project>

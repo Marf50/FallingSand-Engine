@@ -2,15 +2,15 @@ Scene: Unnamed Scene
 Entities:
   - Entity: 5243890234589023
     TagComponent:
-      Tag: Clip-Space Camera
+      Tag: Camera 2
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [0.850000024, 0, 0]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
       Camera:
-        ProjectionType: 1
-        PerspectiveFOV: 0.785398185
+        ProjectionType: 0
+        PerspectiveFOV: 1.57079637
         PerspectiveNear: 0.00999999978
         PerspectiveFar: 1000
         OrthographicSize: 10
@@ -19,30 +19,30 @@ Entities:
       Primary: false
   - Entity: 5243890234589023
     TagComponent:
+      Tag: Square more goofy ah
+    TransformComponent:
+      Translation: [-2.41199994, 0, 0]
+      Rotation: [0.785398185, 0, 0]
+      Scale: [10, 1.12699997, 1]
+    SpriteRendererComponent:
+      Color: [0.197080195, 0.683397651, 0.1134599, 1]
+  - Entity: 5243890234589023
+    TagComponent:
       Tag: Camera
     TransformComponent:
-      Translation: [0, 0, 0]
+      Translation: [0, -0.200000003, 6.30000019]
       Rotation: [0, 0, 0]
       Scale: [1, 1, 1]
     CameraComponent:
       Camera:
-        ProjectionType: 1
-        PerspectiveFOV: 0.785398185
+        ProjectionType: 0
+        PerspectiveFOV: 1.60570288
         PerspectiveNear: 0.00999999978
         PerspectiveFar: 1000
         OrthographicSize: 10
         OrthographicNear: -1
         OrthographicFar: 1
       Primary: true
-  - Entity: 5243890234589023
-    TagComponent:
-      Tag: Square more goofy ah
-    TransformComponent:
-      Translation: [-2.79999995, 0, 0]
-      Rotation: [0, 0, 0]
-      Scale: [1.54999995, 3.3499999, 1]
-    SpriteRendererComponent:
-      Color: [0, 0, 1, 1]
   - Entity: 5243890234589023
     TagComponent:
       Tag: Square goofy ah

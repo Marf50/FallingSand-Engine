@@ -5,8 +5,15 @@
 #include "SceneCamera.h"
 #include "ScriptableEntity.h"
 
+
+
+
 namespace FallingSandEngine
 {
+	enum class ElementType : uint16_t;
+	class ElementInterface;
+	typedef uint64_t CellData;
+
 	struct TagComponent
 	{
 		std::string Tag;
@@ -38,7 +45,6 @@ namespace FallingSandEngine
 				* glm::scale(glm::mat4(1.0f), Scale);
 		}
 	};
-
 	struct SpriteRendererComponent
 	{
 		glm::vec4 Color = glm::vec4(1.0f);
@@ -48,7 +54,6 @@ namespace FallingSandEngine
 		SpriteRendererComponent(const glm::vec4& color)
 			:Color(color) {}
 	};
-
 	struct CameraComponent
 	{
 		SceneCamera Camera;
@@ -58,7 +63,6 @@ namespace FallingSandEngine
 		CameraComponent() = default;
 		CameraComponent(const CameraComponent&) = default;
 	};
-
 	struct NativeScriptComponent
 	{
 		ScriptableEntity* Instance = nullptr;
@@ -73,5 +77,16 @@ namespace FallingSandEngine
 			InstantiateScript = []() { return static_cast<ScriptableEntity*>(new T()); };
 			DestroyScript = [](NativeScriptComponent* nsc) { delete nsc->Instance; nsc->Instance = nullptr; };
 		}
+	};
+	struct ChunkComponent
+	{
+		
+		int64_t ChunkCoords[2];
+		CellData Cells[64][64];
+		bool IsAwake = false;
+		//ChunkComponent* Neighbors[8]; Obsolete
+		bool RandomNumber = false;
+
+		std::unordered_map<ElementType, ElementInterface*> ElementCache;
 	};
 }

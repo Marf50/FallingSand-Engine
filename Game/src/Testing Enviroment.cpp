@@ -8,7 +8,6 @@
 #include "Platform/OpenGl/OpenGLShader.h"
 #include <glm/gtc/type_ptr.hpp>
 #include "Sandbox2D.h"
-#include "TileTestGame.h"
 
 //uses layer as a subclass and overrides the virtual funtions
 //class ExampleLayer : public FallingSandEngine::Layer
@@ -29,25 +28,27 @@
 //		FSE_TRACE("{0}", event.ToString());
 //	}
 //};
-
-//EntryPoint
-class Game : public FallingSandEngine::Application
+namespace FallingSandEngine
 {
-public:
-	Game()
+
+
+	//EntryPoint
+	class Game : public Application
 	{
-		
-		//PushLayer(new Sandbox2D());
-		PushLayer(new TileTestGame());
-	}
+	public:
+		Game()
+		{
+			PushLayer(new Sandbox2D());
+		}
 
-	~Game()
+		~Game()
+		{
+
+		}
+	};
+
+	Application* CreateApplication()
 	{
-
+		return new Game();
 	}
-};
-
-FallingSandEngine::Application* FallingSandEngine::CreateApplication()
-{
-	return new Game();
 }

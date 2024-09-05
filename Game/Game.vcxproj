@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>FSE_PLATFORM_WINDOWS;FSE_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\FallingSandEngine\vendor\spdlog\include;..\FallingSandEngine\src;..\FallingSandEngine\Vendor;..\FallingSandEngine\Vendor\glm;..\FallingSandEngine\Vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\FallingSandEngine\vendor\spdlog\include;..\FallingSandEngine\src;..\FallingSandEngine\Vendor;src;..\FallingSandEngine\Vendor\glm;..\FallingSandEngine\Vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
@@ -96,7 +96,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>FSE_PLATFORM_WINDOWS;FSE_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\FallingSandEngine\vendor\spdlog\include;..\FallingSandEngine\src;..\FallingSandEngine\Vendor;..\FallingSandEngine\Vendor\glm;..\FallingSandEngine\Vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\FallingSandEngine\vendor\spdlog\include;..\FallingSandEngine\src;..\FallingSandEngine\Vendor;src;..\FallingSandEngine\Vendor\glm;..\FallingSandEngine\Vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -117,7 +117,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>FSE_PLATFORM_WINDOWS;FSE_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\FallingSandEngine\vendor\spdlog\include;..\FallingSandEngine\src;..\FallingSandEngine\Vendor;..\FallingSandEngine\Vendor\glm;..\FallingSandEngine\Vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\FallingSandEngine\vendor\spdlog\include;..\FallingSandEngine\src;..\FallingSandEngine\Vendor;src;..\FallingSandEngine\Vendor\glm;..\FallingSandEngine\Vendor\entt\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -134,13 +134,27 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Chunks\ChunkManager.h" />
+    <ClInclude Include="src\Base.h" />
+    <ClInclude Include="src\Chunks\ChunkBehavior.h" />
+    <ClInclude Include="src\Elements\Element.h" />
+    <ClInclude Include="src\Elements\ElementFactory.h" />
+    <ClInclude Include="src\Elements\ElementType.h" />
+    <ClInclude Include="src\Elements\Gasses\Air.h" />
+    <ClInclude Include="src\Elements\Gasses\Gases.h" />
+    <ClInclude Include="src\Elements\Liquids\Liquid.h" />
+    <ClInclude Include="src\Elements\Liquids\Water.h" />
+    <ClInclude Include="src\Elements\Powders\Dirt.h" />
+    <ClInclude Include="src\Elements\Powders\Powder.h" />
+    <ClInclude Include="src\Elements\Powders\Sand.h" />
+    <ClInclude Include="src\Elements\Solids\Solid.h" />
+    <ClInclude Include="src\Elements\Solids\Stone.h" />
     <ClInclude Include="src\Sandbox2D.h" />
-    <ClInclude Include="src\TileTestGame.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Chunks\ChunkManager.cpp" />
     <ClCompile Include="src\Sandbox2D.cpp" />
     <ClCompile Include="src\Testing Enviroment.cpp" />
-    <ClCompile Include="src\TileTestGame.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\FallingSandEngine\FallingSandEngine.vcxproj">

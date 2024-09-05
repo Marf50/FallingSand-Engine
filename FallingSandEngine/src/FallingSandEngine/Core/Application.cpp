@@ -6,7 +6,9 @@
 #include "FallingSandEngine/Core/Log.h"
 
 #include <GLFW/glfw3.h>
-
+//very sus shouldnt do this
+#define ImGuiEnabled 
+#undef ImGuiEnabled
 
 namespace FallingSandEngine
 {
@@ -27,9 +29,11 @@ namespace FallingSandEngine
 		m_Window->SetEventCallback(BIND_EVENT_FN(Application::OnEvent));
 
 		Renderer::Init();
-
-		m_ImGuiLayer = new ImGuiLayer();
-		PushOverlay(m_ImGuiLayer);
+		#ifdef ImGuiEnabled 1
+			m_ImGuiLayer = new ImGuiLayer();
+			PushOverlay(m_ImGuiLayer);
+		#endif
+		
 
 
 	}
@@ -51,6 +55,7 @@ namespace FallingSandEngine
 						layer->OnUpdate(timestep);
 				}
 				//will go to render thread, todo
+				#ifdef ImGuiEnabled 1
 				m_ImGuiLayer->Begin();
 				{
 					FSE_PROFILE_SCOPE("LayerStack OnImguiRender")
@@ -58,7 +63,7 @@ namespace FallingSandEngine
 						layer->OnImGuiRender();
 				}
 				m_ImGuiLayer->End();
-				
+				#endif
 
 				m_Window->OnUpdate();
 

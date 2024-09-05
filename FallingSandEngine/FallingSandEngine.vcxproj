@@ -143,7 +143,7 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\FallingSandEngine\Scene\SceneSerailizer.h" />
+    <ClInclude Include="src\FallingSandEngine\Scene\ElementInterface.h" />
     <ClInclude Include="Vendor\stb_image\stb_image.h" />
     <ClInclude Include="src\FallingSandEngine.h" />
     <ClInclude Include="src\FallingSandEngine\Core\Application.h" />
@@ -181,7 +181,9 @@
     <ClInclude Include="src\FallingSandEngine\Scene\Entity.h" />
     <ClInclude Include="src\FallingSandEngine\Scene\Scene.h" />
     <ClInclude Include="src\FallingSandEngine\Scene\SceneCamera.h" />
+    <ClInclude Include="src\FallingSandEngine\Scene\SceneSerailizer.h" />
     <ClInclude Include="src\FallingSandEngine\Scene\ScriptableEntity.h" />
+    <ClInclude Include="src\FallingSandEngine\Utils\PlatformUtils.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLBuffer.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGl\OpenGLFrameBuffer.h" />
@@ -193,7 +195,6 @@
     <ClInclude Include="src\fsepch.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\FallingSandEngine\Scene\SceneSerializer.cpp" />
     <ClCompile Include="Vendor\stb_image\stb_image.cpp" />
     <ClCompile Include="src\FallingSandEngine\Core\Application.cpp" />
     <ClCompile Include="src\FallingSandEngine\Core\Layer.cpp" />
@@ -216,6 +217,7 @@
     <ClCompile Include="src\FallingSandEngine\Scene\Entity.cpp" />
     <ClCompile Include="src\FallingSandEngine\Scene\Scene.cpp" />
     <ClCompile Include="src\FallingSandEngine\Scene\SceneCamera.cpp" />
+    <ClCompile Include="src\FallingSandEngine\Scene\SceneSerializer.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLFrameBuffer.cpp" />
@@ -224,6 +226,7 @@
     <ClCompile Include="src\Platform\OpenGl\OpenGLTexture.cpp" />
     <ClCompile Include="src\Platform\OpenGl\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInput.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsPlatformUtils.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsWindow.cpp" />
     <ClCompile Include="src\fsepch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>

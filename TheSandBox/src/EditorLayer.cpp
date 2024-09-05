@@ -4,6 +4,7 @@
 #include <glm/gtc/type_ptr.hpp>
 
 #include "FallingSandEngine/Scene/SceneSerailizer.h"
+#include "FallingSandEngine/Utils/PlatformUtils.h"
 
 namespace FallingSandEngine
 {
@@ -15,7 +16,7 @@ namespace FallingSandEngine
 	void EditorLayer::OnAttach()
 	{
 		// Load Stuff Here
-		
+
 		// Framebuffer Setup
 		{
 			FramebufferSpecification FramebufferSpec;
@@ -30,9 +31,10 @@ namespace FallingSandEngine
 		// Scene
 		{
 			m_ActiveScene = CreateRef<Scene>();
+			
 			m_ScenehierarchyPanel.SetContext(m_ActiveScene);
 
-			
+
 		}
 	}
 	void EditorLayer::OnDetach()
@@ -41,9 +43,40 @@ namespace FallingSandEngine
 	}
 	void EditorLayer::OnEvent(Event& e)
 	{
-		if (m_ViewPortHovered)
+		m_CameraController.OnEvent(e);
+
+
+		EventDispatcher dispatcher(e);
+		dispatcher.Dispatch<KeyPressedEvent>(FSE_BIND_EVENT_FN(EditorLayer::OnKeyPressed));
+	}
+	bool EditorLayer::OnKeyPressed(KeyPressedEvent& e)
+	{
+
+		// Shortcuts
+		if (e.GetRepeatCount() > 0)
+			return false;
+		bool controlPressed = (Input::IsKeyPressed(KeyCode::Left_Control) || Input::IsKeyPressed(KeyCode::Right_Control));
+		bool shiftPressed = (Input::IsKeyPressed(KeyCode::Left_Shift) || Input::IsKeyPressed(KeyCode::Right_Shift));
+		switch (e.GetKeyCode())
 		{
-			m_CameraController.OnEvent(e);
+			case KeyCode::S:
+			{
+				if (shiftPressed)
+					SaveSceneAs();
+				break;
+			}
+			case KeyCode::N:
+			{
+				if (controlPressed)
+					NewScene();
+				break;
+			}
+			case KeyCode::O:
+			{
+				if (controlPressed)
+					OpenScene();
+				break;
+			}
 		}
 	}
 	void EditorLayer::OnUpdate(Timestep ts)
@@ -84,19 +117,18 @@ namespace FallingSandEngine
 		{
 			if (ImGui::BeginMenu("File"))
 			{
-				if (ImGui::MenuItem("Save"))
-				{
-					SceneSerializer serializer(m_ActiveScene);
-					serializer.Serialize("assets/Scenes/Example.FSEScene");
-				}
-				if (ImGui::MenuItem("Load"))
-				{
-					SceneSerializer serializer(m_ActiveScene);
-					serializer.Deserialize("assets/Scenes/Example.FSEScene");
-				}
+				if (ImGui::MenuItem("New", "Ctrl+N"))
+					NewScene();
+
+				if (ImGui::MenuItem("Save As", "Ctrl+Shift+S"))
+					SaveSceneAs();
+
+				if (ImGui::MenuItem("Open", "Ctrl+O"))
+					OpenScene();
 
 				if (ImGui::MenuItem("Exit"))
 					Application::Get().Close();
+
 				ImGui::EndMenu();
 			}
 			ImGui::EndMainMenuBar();
@@ -125,5 +157,33 @@ namespace FallingSandEngine
 			ImGui::PopStyleVar();
 		}
 		m_ScenehierarchyPanel.OnImGuiRender();
+	}
+
+	void EditorLayer::NewScene()
+	{
+		m_ActiveScene = CreateRef<Scene>();
+		m_ActiveScene->ResizeBounds((uint32_t)m_ViewPortSize.x, (uint32_t)m_ViewPortSize.y);
+		m_ScenehierarchyPanel.SetContext(m_ActiveScene);
+	}
+	void EditorLayer::SaveSceneAs()
+	{
+		std::string filepath = FileDialogs::SaveFile("Falling Sand Engine Scene (*.FSEScene)\0*.FSEScene\0");
+		if (!filepath.empty())
+		{
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.Serialize(filepath);
+		}
+	}
+	void EditorLayer::OpenScene()
+	{
+		std::string filepath = FileDialogs::OpenFile("Falling Sand Engine Scene (*.FSEScene)\0*.FSEScene\0");
+		if (!filepath.empty())
+		{
+			m_ActiveScene = CreateRef<Scene>();
+			m_ActiveScene->ResizeBounds((uint32_t)m_ViewPortSize.x, (uint32_t)m_ViewPortSize.y);
+			m_ScenehierarchyPanel.SetContext(m_ActiveScene);
+			SceneSerializer serializer(m_ActiveScene);
+			serializer.Deserialize(filepath);
+		}
 	}
 }

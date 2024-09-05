@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #ifdef FSE_PLATFORM_WINDOWS
+
 #if FSE_DYNAMIC_LINK
 #ifdef FSE_BUILD_DLL
 #define FSE_API __declspec(dllexport)

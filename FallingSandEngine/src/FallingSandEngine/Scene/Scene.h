@@ -16,6 +16,9 @@ namespace FallingSandEngine
 		void DestroyEntity(Entity entity);
 		void OnUpdate(Timestep ts);
 		void ResizeBounds(uint32_t width, uint32_t height);
+		void ListAllEntitesAndComponents();
+		uint32_t GetViewportWidth() { return m_ViewportWidth; }
+		uint32_t GetViewportHeight() { return m_ViewportHeight; }
 	private:
 		template<typename T>
 		void OnComponentAdded(Entity entity, T& component);

@@ -1,5 +1,5 @@
 #pragma once
-
+#define ImGuiEnabled 1
 #include "FallingSandEngine.h"
 #include "Panels/SceneHierarchyPanel.h"
 namespace FallingSandEngine
@@ -14,16 +14,22 @@ namespace FallingSandEngine
 		virtual void OnDetach() override;
 
 		void OnEvent(Event& e) override;
+
+
+
 		void OnUpdate(Timestep ts) override;
 		virtual void OnImGuiRender() override;
 
 	private:
 
+		bool OnKeyPressed(KeyPressedEvent& e);
+
+		void NewScene();
+		void SaveSceneAs();
+		void OpenScene();
+
+
 		Ref<Scene> m_ActiveScene;
-		Entity m_Square;
-		Entity m_Square2;
-		Entity m_CameraEntity;
-		Entity m_CameraEntity2;
 		bool m_PrimaryCamera = false;
 		OrthographicCameraController m_CameraController;
 		Ref<Framebuffer> m_Framebuffer;

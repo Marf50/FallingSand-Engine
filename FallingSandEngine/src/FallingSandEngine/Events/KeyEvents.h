@@ -1,6 +1,7 @@
 #pragma once
 
 #include "Events.h"
+#include "FallingSandEngine/Core/KeyCodes.h"
 #include <sstream>
 
 namespace FallingSandEngine
@@ -8,7 +9,7 @@ namespace FallingSandEngine
 	class FSE_API KeyEvent : public Event
 	{
 	public:
-		inline int GetKeyCode() const { return m_KeyCode; }
+		inline KeyCode GetKeyCode() const { return (KeyCode)m_KeyCode; }
 
 		EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:

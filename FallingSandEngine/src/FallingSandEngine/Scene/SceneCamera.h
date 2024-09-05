@@ -34,6 +34,8 @@ namespace FallingSandEngine
 
 		void SetProjectionType(ProjectionType type) { m_ProjectionType = type; RecalculateProjectionMatrix(); }
 
+		glm::vec3 ScreenToWorld(const glm::vec2& screenPos, const glm::mat4& viewMatrix, const glm::vec4& viewport) const;
+
 	private:
 		void RecalculateProjectionMatrix();
 

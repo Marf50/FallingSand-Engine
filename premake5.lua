@@ -142,7 +142,7 @@ project "TheSandBox"
 
 		defines
 		{
-			"FSE_PLATFORM_WINDOWS"	
+			"FSE_PLATFORM_WINDOWS"
 		}
 
 		filter "configurations:Debug"
@@ -180,6 +180,7 @@ project "Game"
 		"FallingSandEngine/vendor/spdlog/include",
 		"FallingSandEngine/src",
 		"FallingSandEngine/Vendor",
+		"Game/src",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.entt}"
 	}

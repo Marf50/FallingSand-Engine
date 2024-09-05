@@ -46,4 +46,10 @@ namespace FallingSandEngine
 			m_ProjectionMatrix = glm::perspective(m_PerspectiveFOV, m_AspectRatio, m_PerspectiveNear, m_PerspectiveFar);
 		}
 	}
+	
+	glm::vec3 SceneCamera::ScreenToWorld(const glm::vec2& screenPos, const glm::mat4& viewMatrix, const glm::vec4& viewport) const
+	{
+		glm::vec3 screenPos3D(screenPos.x, viewport.w - screenPos.y, 0.0f);
+		return glm::unProject(screenPos3D, viewMatrix, m_ProjectionMatrix, viewport);
+	}
 }

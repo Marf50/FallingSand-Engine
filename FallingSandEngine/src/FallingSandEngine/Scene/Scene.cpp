@@ -1,6 +1,6 @@
 #include "fsepch.h"
 #include "Scene.h"
-
+#include "ElementInterface.h"
 #include "Components.h"
 #include "FallingSandEngine/Renderer/Renderer2D.h"
 
@@ -8,8 +8,11 @@
 
 #include "Entity.h"
 
+
+
 namespace FallingSandEngine
 {
+	
 	
 	Scene::Scene()
 	{
@@ -27,6 +30,7 @@ namespace FallingSandEngine
 		auto& tag = entity.AddComponent<TagComponent>();
 		tag.Tag = name.empty() ? "Entity" : name;
 		return entity;
+		
 	}
 
 	void Scene::DestroyEntity(Entity entity)
@@ -43,12 +47,14 @@ namespace FallingSandEngine
 					// TODO: Move to Scene::OnScenePlay should happen when scene is played
 					if (!nsc.Instance)
 					{
+						//FSE_CORE_INFO("Instantiating script for entity {0}", (uint32_t)entity);
 						nsc.Instance = nsc.InstantiateScript();
-						nsc.Instance->m_Entity = Entity{ entity, this };
+						nsc.Instance->m_Entity = Entity{entity, this};
 						nsc.Instance->OnCreate();
 
 					}
-					nsc.Instance->OnUpdate(ts);
+					//FSE_CORE_INFO("Updating script for entity {0}", (uint32_t)entity);
+					nsc.Instance->OnUpdate(ts);	
 				});
 		}
 
@@ -77,12 +83,59 @@ namespace FallingSandEngine
 		if (mainCamera)
 		{
 			Renderer2D::BeginScene(*mainCamera, cameraTransform);
+			//chunks
+			auto view = m_Registry.view<TransformComponent, ChunkComponent>();
+			for (auto entity : view)
+			{
+				FSE_PROFILE_SCOPE("Drawing Chunks");
+				//FSE_INFO("chunk found with id {0}", (void*)&entity);
+				auto [transformComponent, chunkComponent] = view.get<TransformComponent, ChunkComponent>(entity);
+				auto translation = transformComponent.Translation;
+				//FSE_INFO("Updating Chunk scene {0}", (void*)&chunkComponent);
+				for (int x = 0; x < 64; ++x)
+				{
+					for (int y = 0; y < 64; ++y)
+					{
+						FSE_PROFILE_SCOPE("Drawing Cell");
+						ElementType cellType = ElementInterface::GetElementType(chunkComponent.Cells[x][y]);
+						if ((uint16_t)cellType == 0U)
+							continue;
+						//FSE_CORE_INFO("Found Element in chunk {0}", (uint16_t)cellType);
+						ElementInterface* element = nullptr;
+						auto it = chunkComponent.ElementCache.find(cellType);
+						if (it != chunkComponent.ElementCache.end())
+						{
+							element = it->second;
+							//FSE_CORE_INFO("Found Element in cache {0}", (uint16_t)cellType);
+						}
+						else
+						{
+							//FSE_CORE_ERROR("Couldnt find Element in cache {0}", (uint16_t)cellType);
+						}
+						if (element)
+						{
+							FSE_PROFILE_SCOPE("Rendering Cell");
+							glm::vec4 color = element->GetColor();
+
+							glm::vec3 cellPosition = translation + glm::vec3(x + (64*chunkComponent.ChunkCoords[0]), y+ (64*chunkComponent.ChunkCoords[1]), 0.0f);
+							glm::mat4 cellTransform = glm::translate(glm::mat4(1.0f), cellPosition);
+							Renderer2D::DrawQuad(cellTransform, color);
+							//FSE_CORE_INFO("Drawing Cell at ({0}, {1}) Color = ({2}, {3}, {4}, {5}", cellPosition.x, cellPosition.y, color[0], color[1], color[2], color[3]);
+						}
+
+					}
+				}
+
+				
+			}
+			//sprites
 			auto group = m_Registry.group<TransformComponent>(entt::get<SpriteRendererComponent>);
 			for (auto entity : group)
 			{
 				auto [transform, sprite] = group.get<TransformComponent, SpriteRendererComponent>(entity);
 				Renderer2D::DrawQuad(transform.GetTransform(), sprite.Color);
 			}
+
 			Renderer2D::EndScene();
 		}
 	}
@@ -100,6 +153,48 @@ namespace FallingSandEngine
 			{
 				cameraComponent.Camera.SetViewportSize(width, height);
 			}
+		}
+	}
+	// For Debug
+	void Scene::ListAllEntitesAndComponents()
+	{
+		// Iterate through all entities in the registry by using the view
+		auto view = m_Registry.view<TransformComponent, TagComponent>(); // A general view, add/remove components as needed
+		for (auto entityID : view)
+		{
+			Entity entity{ entityID, this }; // Wrap entity in your Entity class
+			auto& tag = entity.GetComponent<TagComponent>().Tag; // Get the entity's tag for easy identification
+			FSE_INFO("Entity ID: {0}, Tag: {1}", (uint32_t)(entt::entity)entityID, tag);
+
+			// Check if the entity has specific components and print information
+			if (entity.HasComponent<TransformComponent>())
+			{
+				auto& transform = entity.GetComponent<TransformComponent>();
+				FSE_INFO("  - TransformComponent: Translation({0}, {1}, {2})",
+					transform.Translation.x, transform.Translation.y, transform.Translation.z);
+			}
+
+			if (entity.HasComponent<CameraComponent>())
+			{
+				FSE_INFO("  - CameraComponent");
+			}
+
+			if (entity.HasComponent<ChunkComponent>())
+			{
+				FSE_INFO("  - ChunkComponent at address: {0}", (void*)&entity.GetComponent<ChunkComponent>());
+			}
+
+			if (entity.HasComponent<NativeScriptComponent>())
+			{
+				FSE_INFO("  - NativeScriptComponent with script at address: {0}", (void*)entity.GetComponent<NativeScriptComponent>().Instance);
+			}
+
+			if (entity.HasComponent<SpriteRendererComponent>())
+			{
+				FSE_INFO("  - SpriteRendererComponent");
+			}
+
+			// Add more components here if needed
 		}
 	}
 
@@ -132,6 +227,11 @@ namespace FallingSandEngine
 	void Scene::OnComponentAdded<NativeScriptComponent>(Entity entity, NativeScriptComponent& component)
 	{
 
+	}
+	template<>
+	void Scene::OnComponentAdded<ChunkComponent>(Entity entity, ChunkComponent& component)
+	{
+		//FSE_CORE_INFO("ChunkComponent added {0}", (void*)&component);
 	}
 }
 

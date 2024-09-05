@@ -7,7 +7,7 @@ namespace FallingSandEngine
 	class Entity
 	{
 	public:
-		Entity() {}
+		Entity() {};
 		Entity(entt::entity handle, Scene* scene);
 		Entity(const Entity& other) = default;
 
