@@ -12,9 +12,15 @@ namespace FallingSandEngine
 		}
 		virtual glm::vec4 GetColor() const override
 		{
-			return { 0.9f,0.9f,0.6f,1.0f };
+			return { 0.9f, 0.9f, 0.6f, 1.0f };
 		}
 		uint8_t GetDensity() const override { return 50; }
 		uint8_t GetStackingFactor() const override { return 5; }
+		virtual float GetStability(int x, int y, ChunkComponent& chunk) override
+		{
+			if (CanMoveTo(x, y-1, chunk))
+				return 0;
+			return .25;
+		}
 	};
 }

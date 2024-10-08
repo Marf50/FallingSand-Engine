@@ -19,10 +19,12 @@ namespace FallingSandEngine {
         ~ChunkManager();
         
 
-
+        std::unordered_map<std::pair<int, int>, Entity, PairHash>& GetChunks();
         void UpdateChunks(); // Call this every frame to manage chunk loading/unloading
+        void SetChunkLoadRadius(int radius) { m_ChunkLoadRadius = radius; }
 
-
+        void GenerateNewChunk(int chunkX, int chunkY);
+        void GenerateNoiseFor3x3Chunks(int centerChunkX, int centerChunkY, ChunkComponent& centerChunkComponent);
         std::pair<Entity, std::pair<int, int>> GetChunkAtWorldCoords(int cellX, int cellY);
 
     private:
@@ -35,6 +37,8 @@ namespace FallingSandEngine {
         std::pair<int, int> GetPlayerChunkCoords(); // Helper to get player's current chunk coordinates
         void LoadChunk(int chunkX, int chunkY); // Load a chunk
         void UnloadChunk(int chunkX, int chunkY); // Unload a chunk
+
+        void PopulateNeighborsForChunk(Entity& chunk, int chunkX, int chunkY);
         void UpdateChunk(Entity chunkEntity); // Update a chunk
     };
 

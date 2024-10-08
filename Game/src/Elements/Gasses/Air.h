@@ -14,5 +14,6 @@ namespace FallingSandEngine
 			return { 1.0f,1.0f,1.0f,0.0f };
 		}
 		uint8_t GetDensity() const override { return 10; }
+
 	};
 }

@@ -8,6 +8,7 @@ namespace FallingSandEngine
 	class Liquid : public Element
 	{
 	public:
+        virtual float GetStability(int x, int y, ChunkComponent& chunk) override { return 0; }
 		virtual void OnUpdate(int x, int y, ChunkComponent& chunk) = 0;
 		//virtual uint8_t GetDensity() override;
 	protected:
@@ -21,12 +22,11 @@ namespace FallingSandEngine
 
             int8_t velocityY = GetVelocityY(chunk.Cells[x][y]);
             int8_t velocityX = GetVelocityX(chunk.Cells[x][y]);
+
             // Calculate the target position
             int targetY = y - velocityY;
             int targetX = x + velocityX;
-            // Ensure target is within bounds
-            targetY = glm::clamp(targetY, 0, 63);
-            targetX = glm::clamp(targetX, 0, 63);
+
             if (velocityX != 0)
                 AddVelocityX(chunk.Cells[x][y], (GetVelocityX(chunk.Cells[x][y]) > 0 ? -GetFriction() : GetFriction()));
             if (velocityY != 0)
@@ -35,11 +35,17 @@ namespace FallingSandEngine
                 auto [newX, newY] = MoveTowardsTarget(x, y, targetX, targetY, chunk);
                 if (newX != x || newY != y)
                 {
-                    // Swap with the target cell
-                    std::swap(chunk.Cells[x][y], chunk.Cells[newX][newY]);
-                    AwakeAround(newX, newY, chunk);
-                    chunk.RandomNumber = !chunk.RandomNumber;
-                    return;
+                    if (MoveCell(x, y, newX, newY, chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);
+                        AwakeAround(newX, newY, chunk);
+                        AwakeAround(x, y, chunk);
+                        chunk.RandomNumber = !chunk.RandomNumber;
+                        return;
+                    }
+                    
+
+                    
                 }
             }
             if (velocityX != 0)
@@ -47,15 +53,21 @@ namespace FallingSandEngine
                 auto [newX, newY] = MoveTowardsTarget(x, y, targetX, y, chunk);
                 if (newX != x || newY != y)
                 {
-                    std::swap(chunk.Cells[x][y], chunk.Cells[newX][newY]);
-                    AwakeAround(newX, newY, chunk);
-                    return;
+                    SetVelocityY(chunk.Cells[x][y], 0);
+                    if (MoveCell(x,y,newX,newY,chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);
+                        AwakeAround(newX, newY, chunk);
+                        AwakeAround(x, y, chunk);
+                        return;
+                    }
                 }
             }
 
             // Check diagonal movement to the left or right
             if (AttemptHorizontalMove(x, y, chunk))
             {
+                SetVelocityY(chunk.Cells[x][y], 0);
                 return; // Diagonal movement successful, no need to reset velocity
             }
 
@@ -73,38 +85,58 @@ namespace FallingSandEngine
 
 			if (chunk.RandomNumber)
 			{
-				if (x > 0 && CanMoveTo(x - 1, y, chunk))
+				if (CanMoveTo(x - 1, y, chunk))
 				{
-                    AddVelocityX(chunk.Cells[x][y], -3);
-					std::swap(chunk.Cells[x][y], chunk.Cells[x - 1][y]);
-                    AwakeAround(x, y, chunk);
-                    return true;
+                    AddVelocityX(chunk.Cells[x][y], -2);
+                    if (MoveCell(x,y,x-1,y,chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);
+                        AwakeAround(x - 1, y, chunk);
+                        AwakeAround(x , y, chunk);
+                        chunk.RandomNumber = !chunk.RandomNumber;
+                        return true;
+                    }
 				}
-				else if (x < 63 && CanMoveTo(x + 1, y, chunk))
+				else if (CanMoveTo(x + 1, y, chunk))
 				{
-                    AddVelocityX(chunk.Cells[x][y], 3);
-					std::swap(chunk.Cells[x][y], chunk.Cells[x + 1][y]);
-                    AwakeAround(x, y, chunk);
-                    return true;
+                    AddVelocityX(chunk.Cells[x][y], 2);
+                    if (MoveCell(x,y,x+1,y,chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);                       
+                        AwakeAround(x + 1, y, chunk);
+                        AwakeAround(x , y, chunk);
+                        chunk.RandomNumber = !chunk.RandomNumber;
+                        return true;
+                    }
 				}
 			}
 			else
 			{
 
-				if (x < 63 && CanMoveTo(x + 1, y, chunk))
-				{
-                    AddVelocityX(chunk.Cells[x][y], 3);
-					std::swap(chunk.Cells[x][y], chunk.Cells[x + 1][y]);
-                    AwakeAround(x, y, chunk);
-                    return true;
-				}
-				else if (x > 0 && CanMoveTo(x - 1, y, chunk))
-				{
-                    AddVelocityX(chunk.Cells[x][y], -3);
-					std::swap(chunk.Cells[x][y], chunk.Cells[x - 1][y]);
-                    AwakeAround(x, y, chunk);
-                    return true;
-				}
+                if (CanMoveTo(x + 1, y, chunk))
+                {
+                    AddVelocityX(chunk.Cells[x][y], 2);
+                    if (MoveCell(x, y, x + 1, y, chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);                     
+                        AwakeAround(x + 1, y, chunk);
+                        AwakeAround(x , y, chunk);
+                        chunk.RandomNumber = !chunk.RandomNumber;
+                        return true;
+                    }
+                }
+				else if (CanMoveTo(x - 1, y, chunk))
+                {
+                    AddVelocityX(chunk.Cells[x][y], -2);
+                    if (MoveCell(x, y, x - 1, y, chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);                       
+                        AwakeAround(x - 1, y, chunk);
+                        AwakeAround(x , y, chunk);
+                        chunk.RandomNumber = !chunk.RandomNumber;
+                        return true;
+                    }
+                }
 			}
             return false;
 		}

@@ -112,7 +112,7 @@ project "TheSandBox"
 	kind "ConsoleApp"
 	language"C++"
 	cppdialect "C++17"
-	staticruntime "on"
+	staticruntime "On"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -165,7 +165,7 @@ project "Game"
 	kind "ConsoleApp"
 	language"C++"
 	cppdialect "C++17"
-	staticruntime "on"
+	staticruntime "On"
 	
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")

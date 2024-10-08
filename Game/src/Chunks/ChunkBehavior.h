@@ -7,26 +7,32 @@ namespace FallingSandEngine
 	public:
 		void OnCreate() override
 		{
-			
-			auto chunk = GetComponent<ChunkComponent>();
-			//FSE_INFO("chunk script created with adress {0}", (void*)&chunk);
+			//
+			auto& chunk = GetComponent<ChunkComponent>();
+			////FSE_INFO("chunk script created with adress {0}", (void*)&chunk);
 			for (int x = 0; x < 64; ++x)
 			{
 				for (int y = 0; y < 64; ++y)
 				{
-					ElementInterface::SetElementType(chunk.Cells[x][y],(ElementType::Air));
-
+					//ElementInterface::SetElementType(chunk.Cells[x][y], ElementType::Air);
+					//ElementType cellType = ElementInterface::GetElementType(chunk.Cells[x][y]);
+					//FSE_INFO("Set cell ({0}, {1}) to Air. Current cell type: {2}", x, y, static_cast<int>(cellType));
 					// set clean memory
 					ElementInterface::SetFlag(chunk.Cells[x][y], ElementInterface::UPDATED_FLAG, false);
+					ElementInterface::SetFlag(chunk.Cells[x][y], ElementInterface::AWAKE_FLAG, false);
 					ElementInterface::SetVelocityX(chunk.Cells[x][y], 0);
 					ElementInterface::SetVelocityY(chunk.Cells[x][y], 0);
 				}
 			}
-			//FSE_INFO("Chunk Created at coords {0} , {1}", chunk.ChunkCoords.x, chunk.ChunkCoords.y);
+			FSE_INFO("Chunk Created at coords {0} , {1}", chunk.ChunkCoords[0], chunk.ChunkCoords[1]);
 		}
+
+
+
+
 		void OnUpdate(Timestep ts) override
 		{
-			FSE_PROFILE_FUNCTION();
+			
 			// awake check
 			auto& chunk = GetComponent<ChunkComponent>();
 			if (!chunk.IsAwake)
@@ -38,37 +44,36 @@ namespace FallingSandEngine
 				return;
 			m_accumulatedTime = m_accumulatedTime - tickInterval;
 
+			
 
-			// clear cache to start new update
-			//FSE_INFO("Updating Chunk {0}", (void*)&chunk);
-			for (auto& entry : chunk.ElementCache)
-			{
-				delete entry.second;
-			}
-			chunk.ElementCache.clear();
-			chunk.ElementCache[ElementType::Air] = ElementFactory::CreateElementInstance(ElementType::Air);
+			//chunk.ElementCache.clear();
+			
+	
+			//chunk.ElementCache[ElementType::Air] = ElementFactory::CreateElementInstance(ElementType::Air);
 			//Dirty Rectangle
 			int minX = 63, minY = 63, maxX = 0, maxY = 0;
 			bool hasAwakeCells = false;
+
+
 			for (int x = 0; x < 64; ++x)
 			{
 				for (int y = 0; y < 64; ++y)
 				{
-					
-					FSE_PROFILE_SCOPE("For Loop 1")
-					ElementInterface::SetFlag(chunk.Cells[x][y], 0, false);
+					ElementInterface::SetFlag(chunk.Cells[x][y], ElementInterface::UPDATED_FLAG, false);
 					ElementType cellType = ElementInterface::GetElementType(chunk.Cells[x][y]);
-					if (cellType == ElementType::Air)
-						continue;
+
+					//if (cellType == ElementType::Air)
+					//	continue;c
+
 					if (chunk.ElementCache.find(cellType) == chunk.ElementCache.end())
 					{
-						FSE_PROFILE_SCOPE("Cacheing")
-						chunk.ElementCache[cellType] = ElementFactory::CreateElementInstance(cellType);
-						//FSE_INFO("Cached Element {0}", (uint16_t)cellType);
+						chunk.ElementCache[cellType] = std::move(ElementFactory::CreateElementInstance(cellType));
+						//PropagateCacheToNeighbors(cellType, chunk);
 					}
+
 					if (ElementInterface::GetFlag(chunk.Cells[x][y], ElementInterface::AWAKE_FLAG) == true)
 					{
-						FSE_PROFILE_SCOPE("Dirty Rect Gen")
+						
 						if (x < minX) minX = x;
 						if (x > maxX) maxX = x;
 						if (y < minY) minY = y;
@@ -77,10 +82,13 @@ namespace FallingSandEngine
 					}
 				}
 			}
-
 			if (!hasAwakeCells)
 				return;
-			//FSE_INFO("Cache size after population: {0}", chunk.ElementCache.size());
+
+
+
+
+
 			for (int x = minX; x <= maxX; ++x)
 			{
 				for (int y = minY; y <= maxY; ++y)
@@ -91,13 +99,12 @@ namespace FallingSandEngine
 					if (ElementInterface::GetFlag(chunk.Cells[x][y], ElementInterface::UPDATED_FLAG) == true)
 						continue;
 					ElementType cellType = ElementInterface::GetElementType(chunk.Cells[x][y]);
-					ElementInterface* element = chunk.ElementCache[cellType];
-					if (element != nullptr) 
+					Scope<ElementInterface>& element = chunk.ElementCache[cellType];
+					if (element) 
 					{
 						FSE_PROFILE_SCOPE("Updating Rectangle")
 						element->OnUpdate(x, y, chunk);
 						chunk.RandomNumber = !chunk.RandomNumber;
-						//FSE_INFO("Updating cell {0},{1}", x, y);
 					}
 				}
 			}
@@ -105,12 +112,25 @@ namespace FallingSandEngine
 
 
 		}
+		//helper for manageing caches
+		//void PropagateCacheToNeighbors(ElementType cellType, ChunkComponent& chunk)
+		//{
+		//	for (int i = 0; i < 8; ++i) // Check all 8 neighbors
+		//	{
+		//		ChunkComponent* neighbor = chunk.Neighbors[i];
+		//		if (neighbor != nullptr && neighbor->ElementCache.find(cellType) == neighbor->ElementCache.end())
+		//		{
+		//			neighbor->ElementCache[cellType] = ElementFactory::CreateElementInstance(cellType);
+		//		}
+		//	}
+		//}
+
 		void OnDestroy() override
 		{
 
 		}
 	private:
 		float m_accumulatedTime = 0.0f;
-		const float tickInterval = 0.008f; // Tick interval 30 ticks a second
+		const float tickInterval = 0.0008f; // Tick interval 30 ticks a second
 	};
 }

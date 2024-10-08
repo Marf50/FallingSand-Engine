@@ -4,14 +4,44 @@
     <Filter Include="Chunks">
       <UniqueIdentifier>{D1A5C4AB-BD47-EF81-A602-03D6924376D2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="DevTools">
+      <UniqueIdentifier>{155759B5-0124-B4C0-2A3D-A2681669E94E}</UniqueIdentifier>
+    </Filter>
     <Filter Include="Elements">
       <UniqueIdentifier>{22088A96-0ED5-E4A1-37EE-D249231A1A30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elements\Gasses">
+      <UniqueIdentifier>{17095BD5-8394-C899-8CA5-4B8EF8AF249A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elements\Liquids">
+      <UniqueIdentifier>{0C982514-F890-4466-21C3-29EB0D1B2472}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elements\Powders">
+      <UniqueIdentifier>{35B07056-21A9-8FA8-4ADB-742D36336FB4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Elements\Solids">
+      <UniqueIdentifier>{5F4652F2-CBD1-BFB6-D4E2-42AB40ED1BB7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Player">
+      <UniqueIdentifier>{724E55CA-5EF0-7FA0-47AB-93F433EC06F1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="UI">
+      <UniqueIdentifier>{83755900-6F01-880B-D8AF-880BC45A880B}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Base.h" />
     <ClInclude Include="src\Chunks\ChunkBehavior.h">
       <Filter>Chunks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Chunks\ChunkManager.h">
+      <Filter>Chunks</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DevTools\CellPlacementScript.h">
+      <Filter>DevTools</Filter>
+    </ClInclude>
+    <ClInclude Include="src\DevTools\DevCameraScript.h">
+      <Filter>DevTools</Filter>
     </ClInclude>
     <ClInclude Include="src\Elements\Element.h">
       <Filter>Elements</Filter>
@@ -22,21 +52,64 @@
     <ClInclude Include="src\Elements\ElementType.h">
       <Filter>Elements</Filter>
     </ClInclude>
+    <ClInclude Include="src\Elements\Gasses\Air.h">
+      <Filter>Elements\Gasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\Gasses\Gases.h">
+      <Filter>Elements\Gasses</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\Liquids\Liquid.h">
+      <Filter>Elements\Liquids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\Liquids\Water.h">
+      <Filter>Elements\Liquids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\Powders\Dirt.h">
+      <Filter>Elements\Powders</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\Powders\Powder.h">
+      <Filter>Elements\Powders</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\Powders\Sand.h">
+      <Filter>Elements\Powders</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\Solids\Solid.h">
+      <Filter>Elements\Solids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\Solids\Stone.h">
+      <Filter>Elements\Solids</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Player\FreeCamScript.h">
+      <Filter>Player</Filter>
+    </ClInclude>
     <ClInclude Include="src\Sandbox2D.h" />
-    <ClInclude Include="src\Elements\Liquids\Liquid.h" />
-    <ClInclude Include="src\Elements\Powders\Powder.h" />
-    <ClInclude Include="src\Elements\Solids\Solid.h" />
-    <ClInclude Include="src\Elements\Powders\Sand.h" />
-    <ClInclude Include="src\Elements\Powders\Dirt.h" />
-    <ClInclude Include="src\Elements\Liquids\Water.h" />
-    <ClInclude Include="src\Elements\Solids\Stone.h" />
-    <ClInclude Include="src\Elements\Gasses\Gases.h" />
-    <ClInclude Include="src\Elements\Gasses\Air.h" />
-    <ClInclude Include="src\Chunks\ChunkManager.h" />
+    <ClInclude Include="src\UI\UI.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UI\UIStyle.h">
+      <Filter>UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\UI\UILayers\EscMenu\EscMenuUILayer.h" />
+    <ClInclude Include="src\UI\UILayers\Example Ui Layer.h" />
+    <ClInclude Include="src\AssetManagement\AssetManager.h" />
+    <ClInclude Include="src\AssetManagement\LoadingScreenLayer.h" />
+    <ClInclude Include="src\AssetManagement\SettingsManager.h" />
+    <ClInclude Include="src\UI\UILayers\MainMenu\MainMenuUILayer.h" />
+    <ClInclude Include="src\Chunks\NoiseFunctions.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Chunks\ChunkManager.cpp">
+      <Filter>Chunks</Filter>
+    </ClCompile>
     <ClCompile Include="src\Sandbox2D.cpp" />
     <ClCompile Include="src\Testing Enviroment.cpp" />
-    <ClCompile Include="src\Chunks\ChunkManager.cpp" />
+    <ClCompile Include="src\UI\UI.cpp">
+      <Filter>UI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\UI\UILayers\EscMenu\EscMenuUILayer.cpp" />
+    <ClCompile Include="src\AssetManagement\AssetManager.cpp" />
+    <ClCompile Include="src\AssetManagement\LoadingScreenLayer.cpp" />
+    <ClCompile Include="src\AssetManagement\SettingsManager.cpp" />
+    <ClCompile Include="src\UI\UILayers\MainMenu\MainMenuUILayer.cpp" />
   </ItemGroup>
 </Project>

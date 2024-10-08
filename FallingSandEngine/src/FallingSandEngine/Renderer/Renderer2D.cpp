@@ -332,28 +332,33 @@ namespace FallingSandEngine
 			s_Data.TextureSlots[s_Data.TextureSlotIndex] = texture;
 			s_Data.TextureSlotIndex++;
 		}
-
+		// Adjust the UV coordinates based on the tiling factor
+		glm::vec2 tiledCoords[4];
+		for (int i = 0; i < 4; i++)
+		{
+			tiledCoords[i] = TextureCoords[i] * tilingFactor;
+		}
 		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[0];
 		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TextureChoord = TextureCoords[0];
+		s_Data.QuadVertexBufferPtr->TextureChoord = tiledCoords[0];
 		s_Data.QuadVertexBufferPtr->TextureIndex = TextureIndex;
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[1];
 		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TextureChoord = TextureCoords[1];
+		s_Data.QuadVertexBufferPtr->TextureChoord = tiledCoords[1];
 		s_Data.QuadVertexBufferPtr->TextureIndex = TextureIndex;
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[2];
 		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TextureChoord = TextureCoords[2];
+		s_Data.QuadVertexBufferPtr->TextureChoord = tiledCoords[2];
 		s_Data.QuadVertexBufferPtr->TextureIndex = TextureIndex;
 		s_Data.QuadVertexBufferPtr++;
 
 		s_Data.QuadVertexBufferPtr->Position = transform * s_Data.QuadVertexPositions[3];
 		s_Data.QuadVertexBufferPtr->Color = tintColor;
-		s_Data.QuadVertexBufferPtr->TextureChoord = TextureCoords[3];
+		s_Data.QuadVertexBufferPtr->TextureChoord = tiledCoords[3];
 		s_Data.QuadVertexBufferPtr->TextureIndex = TextureIndex;
 		s_Data.QuadVertexBufferPtr++;
 
@@ -568,7 +573,28 @@ namespace FallingSandEngine
 	}
 
 
+	void Renderer2D::DrawText(const std::string& text, const glm::vec3& position, const glm::vec4& color, std::shared_ptr<Font> font)
+	{
+		if (!font)
+		{
+			return;
+		}
 
+		float xPos = position.x;
+
+		for (char c : text)
+		{
+			const Glyph& glyph = font->GetGlyph(c);
+
+			// Draw the glyph using the subtexture
+			Renderer2D::DrawQuad(glm::vec3(xPos + glyph.OffsetX, position.y + glyph.OffsetY, position.z),
+				glm::vec2(glyph.Width, glyph.Height),
+				glyph.SubTexture, 1.0f, color);
+
+			// Advance the cursor position for the next character
+			xPos += glyph.AdvanceX;
+		}
+	}
 
 	void Renderer2D::ResetStats()
 	{

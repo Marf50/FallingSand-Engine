@@ -98,17 +98,34 @@ namespace FallingSandEngine
 		return false;
 	}
 	void Application::PushLayer(Layer * layer)
-		{
-		FSE_PROFILE_FUNCTION();
-			m_LayerStack.PushLayer(layer);
-			layer->OnAttach();
-		}
+	{
+		m_PendingLayerModifications.push([this, layer]() {
+		m_LayerStack.PushLayer(layer);
+		layer->OnAttach();
+		});
+	}
 	void Application::PushOverlay(Layer * layer)
-		{
-		FSE_PROFILE_FUNCTION();
-			m_LayerStack.PushOverlay(layer);
-			layer->OnAttach();
-		}
+	{
+		m_PendingLayerModifications.push([this, layer]() {
+		m_LayerStack.PushOverlay(layer);
+		layer->OnAttach();
+		});
+	}
+	void Application::PopLayer(Layer* layer)
+	{
+		m_PendingLayerModifications.push([this, layer]() {
+		layer->OnDetach();
+		m_LayerStack.PopLayer(layer);
+		});
+	}
+	void Application::PopOverlay(Layer* layer)
+	{
+		m_PendingLayerModifications.push([this, layer]() {
+		layer->OnDetach();
+		m_LayerStack.PopOverlay(layer);
+		});
+	}
+
 	void Application::OnEvent(Event & e)
 		{
 		FSE_PROFILE_FUNCTION();
@@ -119,11 +136,20 @@ namespace FallingSandEngine
 			//FSE_CORE_TRACE("{0}",e.ToString()); 
 			//should be able to work without having to call .ToString but doesnt, operator might be broken? idk
 
+			std::vector<Layer*> LayersToRemove;
+			std::vector<Layer*> LayersToAdd;
+
 			for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();)
 			{
 				if (e.Handled())
 					break;
 				(*--it)->OnEvent(e);
+			}
+
+			while (!m_PendingLayerModifications.empty())
+			{
+				m_PendingLayerModifications.front()(); // Execute the queued modification
+				m_PendingLayerModifications.pop();    // Remove it from the queue
 			}
 		}
 }

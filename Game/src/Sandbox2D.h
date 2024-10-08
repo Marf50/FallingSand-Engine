@@ -2,6 +2,7 @@
 #include "FallingSandEngine.h"
 #include "FallingSandEngine/Scene/SceneSerailizer.h"
 
+
 #include "Base.h"
 namespace FallingSandEngine
 {
@@ -15,6 +16,7 @@ namespace FallingSandEngine
 
 		virtual void OnUpdate(Timestep ts) override;
 		virtual void OnEvent(Event& e) override;
+		void OnSettingsUpdate();
 
 	private:
 		bool OnKeyPressed(KeyPressedEvent& e);

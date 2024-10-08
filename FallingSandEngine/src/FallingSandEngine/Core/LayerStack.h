@@ -20,6 +20,19 @@ namespace FallingSandEngine
 		void PopLayer(Layer* layer);
 		void PopOverlay(Layer* overlay);
 
+		template<typename T>
+		T* GetLayerByType()
+		{
+			for (Layer* layer : m_Layers)
+			{
+				if (T* castedLayer = dynamic_cast<T*>(layer))
+				{
+					return castedLayer;
+				}
+			}
+			return nullptr;
+		}
+
 		std::vector<Layer*>::iterator begin() { return m_Layers.begin(); }
 		std::vector<Layer*>::iterator end() { return m_Layers.end(); }
 	private:

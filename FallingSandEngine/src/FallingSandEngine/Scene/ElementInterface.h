@@ -14,9 +14,11 @@ namespace FallingSandEngine
 		virtual glm::vec4 GetColor() const = 0;
 		virtual void TryAwake(int x, int y, ChunkComponent& chunk) = 0;
 		virtual void OnUpdate(int x, int y, ChunkComponent& chunk) = 0;
+		virtual float GetStability(int x, int y, ChunkComponent& chunk) = 0;
 
 		static ElementType GetElementType(CellData cellData)
 		{
+
 			return static_cast<ElementType>(cellData & ELEMENT_TYPE_MASK);
 		}
 
@@ -32,10 +34,19 @@ namespace FallingSandEngine
 
 		static void SetFlag(CellData& cellData, uint8_t flag, bool value)
 		{
+			if (flag >= 8) // Ensure flag is within valid range (0-7 based on 8 bits)
+			{
+				// Handle invalid flag case
+				FSE_CORE_ERROR("Flag out of bounds: {0}", flag);
+				return;
+			}
+
+			uint64_t flagShift = (1ull << (ELEMENT_FLAGS_SHIFT + flag)) & ELEMENT_FLAGS_MASK;
+
 			if (value)
-				cellData |= (1ull << (ELEMENT_FLAGS_SHIFT + flag)); // Set flag
+				cellData |= flagShift; // Set flag
 			else
-				cellData &= ~(1ull << (ELEMENT_FLAGS_SHIFT + flag)); // Clear flag
+				cellData &= ~flagShift; // Clear flag
 		}
 
 		// Get and Set Velocity Functions

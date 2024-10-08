@@ -1,13 +1,13 @@
 #include "fsepch.h"
 #include "Scene.h"
-#include "ElementInterface.h"
+
 #include "Components.h"
 #include "FallingSandEngine/Renderer/Renderer2D.h"
 
 #include <glm/glm.hpp>
 
 #include "Entity.h"
-
+#include "ElementInterface.h"
 
 
 namespace FallingSandEngine
@@ -98,29 +98,25 @@ namespace FallingSandEngine
 					{
 						FSE_PROFILE_SCOPE("Drawing Cell");
 						ElementType cellType = ElementInterface::GetElementType(chunkComponent.Cells[x][y]);
-						if ((uint16_t)cellType == 0U)
+						if ((uint16_t)cellType == 0U || (uint16_t)cellType == 1U)
 							continue;
 						//FSE_CORE_INFO("Found Element in chunk {0}", (uint16_t)cellType);
-						ElementInterface* element = nullptr;
+						
 						auto it = chunkComponent.ElementCache.find(cellType);
 						if (it != chunkComponent.ElementCache.end())
 						{
-							element = it->second;
-							//FSE_CORE_INFO("Found Element in cache {0}", (uint16_t)cellType);
-						}
-						else
-						{
-							//FSE_CORE_ERROR("Couldnt find Element in cache {0}", (uint16_t)cellType);
-						}
-						if (element)
-						{
-							FSE_PROFILE_SCOPE("Rendering Cell");
-							glm::vec4 color = element->GetColor();
+							Scope<ElementInterface>& element = it->second;
+							
+							if (element)
+							{
+								FSE_PROFILE_SCOPE("Rendering Cell");
+								glm::vec4 color = element->GetColor();
 
-							glm::vec3 cellPosition = translation + glm::vec3(x + (64*chunkComponent.ChunkCoords[0]), y+ (64*chunkComponent.ChunkCoords[1]), 0.0f);
-							glm::mat4 cellTransform = glm::translate(glm::mat4(1.0f), cellPosition);
-							Renderer2D::DrawQuad(cellTransform, color);
-							//FSE_CORE_INFO("Drawing Cell at ({0}, {1}) Color = ({2}, {3}, {4}, {5}", cellPosition.x, cellPosition.y, color[0], color[1], color[2], color[3]);
+								glm::vec3 cellPosition = translation + glm::vec3(x + (64 * chunkComponent.ChunkCoords[0]), y + (64 * chunkComponent.ChunkCoords[1]), 0.0f);
+								glm::mat4 cellTransform = glm::translate(glm::mat4(1.0f), cellPosition);
+								Renderer2D::DrawQuad(cellTransform, color);
+								//FSE_CORE_INFO("Drawing Cell at ({0}, {1}) Color = ({2}, {3}, {4}, {5}", cellPosition.x, cellPosition.y, color[0], color[1], color[2], color[3]);
+							}
 						}
 
 					}
@@ -181,7 +177,24 @@ namespace FallingSandEngine
 
 			if (entity.HasComponent<ChunkComponent>())
 			{
-				FSE_INFO("  - ChunkComponent at address: {0}", (void*)&entity.GetComponent<ChunkComponent>());
+				auto& chunkComponent = entity.GetComponent<ChunkComponent>();
+				FSE_INFO("  - ChunkComponent at address: {0}, ChunkCoords: ({1}, {2})",
+					(void*)&chunkComponent, chunkComponent.ChunkCoords[0], chunkComponent.ChunkCoords[1]);
+
+				// List all neighbors
+				static const char* neighborNames[8] = { "North", "North-East", "East", "South-East", "South", "South-West", "West", "North-West" };
+				for (int i = 0; i < 8; ++i)
+				{
+					if (chunkComponent.Neighbors[i] != nullptr)
+					{
+						FSE_INFO("    - {0} Neighbor at ({1}, {2})",
+							neighborNames[i], chunkComponent.Neighbors[i]->ChunkCoords[0], chunkComponent.Neighbors[i]->ChunkCoords[1]);
+					}
+					else
+					{
+						FSE_INFO("    - {0} Neighbor: NULL", neighborNames[i]);
+					}
+				}
 			}
 
 			if (entity.HasComponent<NativeScriptComponent>())

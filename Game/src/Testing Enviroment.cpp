@@ -8,7 +8,7 @@
 #include "Platform/OpenGl/OpenGLShader.h"
 #include <glm/gtc/type_ptr.hpp>
 #include "Sandbox2D.h"
-
+#include "AssetManagement/LoadingScreenLayer.h"
 //uses layer as a subclass and overrides the virtual funtions
 //class ExampleLayer : public FallingSandEngine::Layer
 //{
@@ -38,7 +38,9 @@ namespace FallingSandEngine
 	public:
 		Game()
 		{
-			PushLayer(new Sandbox2D());
+
+			PushLayer(new LoadingScreenLayer());
+			//PushLayer(new Sandbox2D());
 		}
 
 		~Game()

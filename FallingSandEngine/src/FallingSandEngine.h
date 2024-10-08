@@ -24,6 +24,7 @@
 #include "FallingSandEngine/Renderer/FrameBuffer.h"
 #include "FallingSandEngine/Renderer/Texture.h"
 #include "FallingSandEngine/Renderer/SubTexture2D.h"
+#include "FallingSandEngine/Renderer/Font.h"
 
 #include "FallingSandEngine/Renderer/OrthographicCameraController.h"
 #include "FallingSandEngine/Renderer/OrthographicCamera.h"

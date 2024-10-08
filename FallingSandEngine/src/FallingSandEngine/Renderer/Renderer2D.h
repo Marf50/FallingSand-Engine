@@ -3,8 +3,11 @@
 #include "SubTexture2D.h"
 #include "OrthographicCamera.h"
 #include "Camera.h"
+#include "Font.h"
+
 namespace FallingSandEngine
 {
+
 	class Renderer2D
 	{
 	public:
@@ -35,6 +38,8 @@ namespace FallingSandEngine
 		static void DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<Texture2D>& texture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f));
 		static void DrawRotatedQuad(const glm::vec3& position, const glm::vec2& size, float rotation, const Ref<SubTexture2D>& subtexture, float tilingFactor = 1.0f, const glm::vec4& tintColor = glm::vec4(1.0f));
 
+
+		static void DrawText(const std::string& text, const glm::vec3& positon, const glm::vec4& color, Ref<Font> font);
 
 		// Stats
 		struct Statistics

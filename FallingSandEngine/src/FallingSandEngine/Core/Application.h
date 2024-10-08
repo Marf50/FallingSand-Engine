@@ -24,11 +24,19 @@ namespace FallingSandEngine {
 
 		void PushLayer(Layer* layer);
 		void PushOverlay(Layer* layer);
+		void PopLayer(Layer* layer);
+		void PopOverlay(Layer* layer);
 
 		inline static Application& Get() { return *s_Instance; }
 		inline Window& GetWindow() { return *m_Window; }
 
 		void Close();
+
+		template<typename T>
+		T* GetLayerByType()
+		{
+			return m_LayerStack.GetLayerByType<T>();
+		}
 
 		ImGuiLayer* GetImGuiLayer() { return m_ImGuiLayer; }
 
@@ -43,6 +51,10 @@ namespace FallingSandEngine {
 		LayerStack m_LayerStack;
 		Timestep m_Timestep;
 		float m_LastFrameTime = 0.0f;
+
+
+
+		std::queue<std::function<void()>> m_PendingLayerModifications;
 
 	private:
 		static Application* s_Instance;

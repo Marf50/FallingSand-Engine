@@ -48,6 +48,9 @@
     <ClInclude Include="Vendor\stb_image\stb_image.h">
       <Filter>Vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="Vendor\stb_image\stb_truetype.h">
+      <Filter>Vendor\stb_image</Filter>
+    </ClInclude>
     <ClInclude Include="src\FallingSandEngine.h">
       <Filter>src</Filter>
     </ClInclude>
@@ -108,6 +111,9 @@
     <ClInclude Include="src\FallingSandEngine\Renderer\Camera.h">
       <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Renderer\Font.h">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Renderer\FrameBuffer.h">
       <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
@@ -145,6 +151,9 @@
       <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Scene\Components.h">
+      <Filter>src\FallingSandEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\FallingSandEngine\Scene\ElementInterface.h">
       <Filter>src\FallingSandEngine\Scene</Filter>
     </ClInclude>
     <ClInclude Include="src\FallingSandEngine\Scene\Entity.h">
@@ -192,7 +201,6 @@
     <ClInclude Include="src\fsepch.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\FallingSandEngine\Scene\ElementInterface.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Vendor\stb_image\stb_image.cpp">
@@ -217,6 +225,9 @@
       <Filter>src\FallingSandEngine\ImGui</Filter>
     </ClCompile>
     <ClCompile Include="src\FallingSandEngine\Renderer\Buffer.cpp">
+      <Filter>src\FallingSandEngine\Renderer</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FallingSandEngine\Renderer\Font.cpp">
       <Filter>src\FallingSandEngine\Renderer</Filter>
     </ClCompile>
     <ClCompile Include="src\FallingSandEngine\Renderer\FrameBuffer.cpp">

@@ -67,26 +67,38 @@ namespace FallingSandEngine
 	{
 		ScriptableEntity* Instance = nullptr;
 
-		ScriptableEntity*(*InstantiateScript)();
-		void (*DestroyScript)(NativeScriptComponent* );
+		std::function<ScriptableEntity* ()> InstantiateScript;  // Change from function pointer to std::function
+		std::function<void(NativeScriptComponent*)> DestroyScript;
 
-		template<typename T>
-		void Bind()
+		template<typename T, typename... Args>
+		void Bind(Args&&... args)
 		{
 			// Heap Allocation Stinky "new" bad
-			InstantiateScript = []() { return static_cast<ScriptableEntity*>(new T()); };
-			DestroyScript = [](NativeScriptComponent* nsc) { delete nsc->Instance; nsc->Instance = nullptr; };
+			InstantiateScript = [args...]() mutable {
+				T* script = new T(std::forward<Args>(args)...);  // Construct the script
+				return static_cast<ScriptableEntity*>(script);
+				};
+			DestroyScript = [](NativeScriptComponent* nsc) {
+				delete nsc->Instance;
+				nsc->Instance = nullptr;
+				};
 		}
 	};
 	struct ChunkComponent
 	{
-		
+		ChunkComponent(const ChunkComponent&) = delete;
+		ChunkComponent& operator=(const ChunkComponent&) = delete;
+
+		// Default constructor and destructor
+		ChunkComponent() = default;
+		~ChunkComponent() = default;
+
 		int64_t ChunkCoords[2];
 		CellData Cells[64][64];
 		bool IsAwake = false;
-		//ChunkComponent* Neighbors[8]; Obsolete
+		ChunkComponent* Neighbors[8];
 		bool RandomNumber = false;
 
-		std::unordered_map<ElementType, ElementInterface*> ElementCache;
+		std::unordered_map<ElementType, Scope<ElementInterface>> ElementCache;
 	};
 }

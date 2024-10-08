@@ -143,8 +143,8 @@
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="src\FallingSandEngine\Scene\ElementInterface.h" />
     <ClInclude Include="Vendor\stb_image\stb_image.h" />
+    <ClInclude Include="Vendor\stb_image\stb_truetype.h" />
     <ClInclude Include="src\FallingSandEngine.h" />
     <ClInclude Include="src\FallingSandEngine\Core\Application.h" />
     <ClInclude Include="src\FallingSandEngine\Core\Core.h" />
@@ -165,6 +165,7 @@
     <ClInclude Include="src\FallingSandEngine\ImGui\ImGuiLayer.h" />
     <ClInclude Include="src\FallingSandEngine\Renderer\Buffer.h" />
     <ClInclude Include="src\FallingSandEngine\Renderer\Camera.h" />
+    <ClInclude Include="src\FallingSandEngine\Renderer\Font.h" />
     <ClInclude Include="src\FallingSandEngine\Renderer\FrameBuffer.h" />
     <ClInclude Include="src\FallingSandEngine\Renderer\GraphicsContext.h" />
     <ClInclude Include="src\FallingSandEngine\Renderer\OrthographicCamera.h" />
@@ -178,6 +179,7 @@
     <ClInclude Include="src\FallingSandEngine\Renderer\Texture.h" />
     <ClInclude Include="src\FallingSandEngine\Renderer\VertexArray.h" />
     <ClInclude Include="src\FallingSandEngine\Scene\Components.h" />
+    <ClInclude Include="src\FallingSandEngine\Scene\ElementInterface.h" />
     <ClInclude Include="src\FallingSandEngine\Scene\Entity.h" />
     <ClInclude Include="src\FallingSandEngine\Scene\Scene.h" />
     <ClInclude Include="src\FallingSandEngine\Scene\SceneCamera.h" />
@@ -203,6 +205,7 @@
     <ClCompile Include="src\FallingSandEngine\ImGui\ImGuiBuild.cpp" />
     <ClCompile Include="src\FallingSandEngine\ImGui\ImGuiLayer.cpp" />
     <ClCompile Include="src\FallingSandEngine\Renderer\Buffer.cpp" />
+    <ClCompile Include="src\FallingSandEngine\Renderer\Font.cpp" />
     <ClCompile Include="src\FallingSandEngine\Renderer\FrameBuffer.cpp" />
     <ClCompile Include="src\FallingSandEngine\Renderer\OrthographicCamera.cpp" />
     <ClCompile Include="src\FallingSandEngine\Renderer\OrthographicCameraController.cpp" />

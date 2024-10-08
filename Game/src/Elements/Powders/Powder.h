@@ -9,8 +9,10 @@ namespace FallingSandEngine
 	{
 	public:
 		virtual void OnUpdate(int x, int y, ChunkComponent& chunk) = 0;
+        
 
 	protected:
+        
         virtual void Move(int x, int y, ChunkComponent& chunk)
         {
             
@@ -25,9 +27,7 @@ namespace FallingSandEngine
             // Calculate the target position
             int targetY = y - velocityY;
             int targetX = x + velocityX;
-            // Ensure target is within bounds
-            targetY = glm::clamp(targetY, 0, 63);
-            targetX = glm::clamp(targetX, 0, 63);
+
             if (velocityX != 0)
                 AddVelocityX(chunk.Cells[x][y], (GetVelocityX(chunk.Cells[x][y]) > 0 ? -GetFriction() : GetFriction()));
             if (velocityY != 0)
@@ -36,12 +36,15 @@ namespace FallingSandEngine
                 auto [newX, newY] = MoveTowardsTarget(x, y, targetX, targetY, chunk);
                 if (newX != x || newY != y)
                 {
-                    // Swap with the target cell
-                    SetFlag(chunk.Cells[newX][newY], AWAKE_FLAG, true);
-                    std::swap(chunk.Cells[x][y], chunk.Cells[newX][newY]);
-                    AwakeAround(newX, newY, chunk);
-                    chunk.RandomNumber = !chunk.RandomNumber;
-                    return;
+                    // Use MoveCell to swap or move between chunks
+                    if (MoveCell(x, y, newX, newY, chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);
+                        AwakeAround(x, y, chunk);
+                        AwakeAround(newX, newY, chunk);
+                        chunk.RandomNumber = !chunk.RandomNumber;
+                        return;
+                    }
                 }
             }
             if (velocityX != 0)
@@ -49,9 +52,14 @@ namespace FallingSandEngine
                 auto [newX, newY] = MoveTowardsTarget(x, y, targetX, y, chunk);
                 if (newX != x || newY != y)
                 {
-                    std::swap(chunk.Cells[x][y], chunk.Cells[newX][newY]);
-                    AwakeAround(newX, newY, chunk);
-                    return;
+                    SetVelocityY(chunk.Cells[x][y], 0);
+                    if (MoveCell(x, y, newX, newY, chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);
+                        AwakeAround(x, y, chunk);
+                        AwakeAround(newX, newY, chunk);
+                        return;
+                    }
                 }
             }
             
@@ -70,44 +78,60 @@ namespace FallingSandEngine
 
         bool AttemptDiagonalMove(int x, int y, ChunkComponent& chunk)
         {
-            AddVelocityX(chunk.Cells[x][y], (chunk.RandomNumber ? -1:1) * GetStackingFactor());
+            // Adjust velocities based on the random number for diagonal movement
+            AddVelocityX(chunk.Cells[x][y], (chunk.RandomNumber ? -1 : 1) * GetStackingFactor());
             AddVelocityY(chunk.Cells[x][y], -1);
+
+            // First random diagonal direction (left or right)
             if (chunk.RandomNumber)
             {
-                if (x > 0 && y > 0 && CanMoveTo(x - 1, y - 1, chunk))
+                // Try to move diagonally left
+                if (CanMoveTo(x - 1, y - 1, chunk))
                 {
-                    SetFlag(chunk.Cells[x - 1][y - 1], AWAKE_FLAG, true);
-                    std::swap(chunk.Cells[x][y], chunk.Cells[x - 1][y - 1]);
-                    AwakeAround(x, y, chunk);
-                    chunk.RandomNumber = !chunk.RandomNumber;
-                    return true;
+                    if (MoveCell(x, y, x - 1, y - 1, chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);
+                        AwakeAround(x - 1, y - 1, chunk);
+                        chunk.RandomNumber = !chunk.RandomNumber;
+                        return true;
+                    }
                 }
-                else if (x < 63 && y > 0 && CanMoveTo(x + 1, y - 1, chunk))
-                {             
-                    SetFlag(chunk.Cells[x + 1][y - 1], AWAKE_FLAG, true);
-                    std::swap(chunk.Cells[x][y], chunk.Cells[x + 1][y - 1]);
-                    AwakeAround(x, y, chunk);
-                    chunk.RandomNumber = !chunk.RandomNumber;
-                    return true;
+                // Try to move diagonally right
+                else if (CanMoveTo(x + 1, y - 1, chunk))
+                {
+                    if (MoveCell(x, y, x + 1, y - 1, chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);
+                        AwakeAround(x + 1, y - 1, chunk);
+                        chunk.RandomNumber = !chunk.RandomNumber;
+                        return true;
+                    }
                 }
             }
+            // Second diagonal direction (right or left)
             else
             {
-                if (x < 63 && y > 0 && CanMoveTo(x + 1, y - 1, chunk))
-                {                   
-                    SetFlag(chunk.Cells[x + 1][y - 1], AWAKE_FLAG, true);
-                    std::swap(chunk.Cells[x][y], chunk.Cells[x + 1][y - 1]);
-                    AwakeAround(x, y, chunk);
-                    chunk.RandomNumber = !chunk.RandomNumber;
-                    return true;
+                // Try to move diagonally right
+                if (CanMoveTo(x + 1, y - 1, chunk))
+                {
+                    if (MoveCell(x, y, x + 1, y - 1, chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);
+                        AwakeAround(x + 1, y - 1, chunk);
+                        chunk.RandomNumber = !chunk.RandomNumber;
+                        return true;
+                    }
                 }
-                else if (x > 0 && y > 0 && CanMoveTo(x - 1, y - 1, chunk))
-                {                 
-                    SetFlag(chunk.Cells[x - 1][y - 1], AWAKE_FLAG, true);
-                    std::swap(chunk.Cells[x][y], chunk.Cells[x - 1][y - 1]);
-                    AwakeAround(x, y, chunk);
-                    chunk.RandomNumber = !chunk.RandomNumber;
-                    return true;
+                // Try to move diagonally left
+                else if (CanMoveTo(x - 1, y - 1, chunk))
+                {
+                    if (MoveCell(x, y, x - 1, y - 1, chunk))
+                    {
+                        SetFlag(chunk.Cells[x][y], AWAKE_FLAG, true);
+                        AwakeAround(x - 1, y - 1, chunk);
+                        chunk.RandomNumber = !chunk.RandomNumber;
+                        return true;
+                    }
                 }
             }
             return false; // No diagonal move was possible
